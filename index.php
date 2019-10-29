@@ -1,12 +1,11 @@
 <?php
-
+  use Rapid\ConfigFile;
   // Include the Rapid library
   require_once('lib/Rapid.php');
+  DEFINE('BASE_DIR', ConfigFile::getContent()['APP_BASE_URL']);
 
-  $APP_BASE_URL = function($req, $res) {
-    $config = \Rapid\ConfigFile::getContent();
-    return $config['APP_BASE_URL'];
-  };
+
+
   // Create a new Router instance
   $app = new \Rapid\Router();
 
