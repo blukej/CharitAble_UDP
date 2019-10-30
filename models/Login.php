@@ -44,18 +44,12 @@ public function setUserID($userID) {
 
 public function setUserName($userName) {
 
-    $rapid = new \Rapid\Request;
-    $path = $rapid->getLocalPath();
-
-
+ 
     $this->userName = $userName;
 }
 
 
 public function setEmail($email) {
-
-    $rapid = new \Rapid\Request;
-    $path = $rapid->getLocalPath();
 
 
     $this->email = $email;
@@ -63,8 +57,6 @@ public function setEmail($email) {
 
 public function setHash($hash) {
 
-    $rapid = new \Rapid\Request;
-    $path = $rapid->getLocalPath();
 
     $this->hash = $hash;
     
@@ -76,19 +68,15 @@ public function login(PDO $pdo) {
         throw new Exception('Invalid PDO object for Login register');
     }
 
-    $stt = $pdo->prepare('SELECT username, hash FROM users WHERE username = :username LIMIT 1');
+    $stt = $pdo->prepare('SELECT user_name, hash FROM users WHERE user_name = :user_name LIMIT 1');
     $stt->execute([
-      'username' => $this->getUserName()
+      'user_name' => $this->getUserName()
     ]);
 
     $row = $stt->fetch();
 
-    if ($row === FALSE || password_verify(\Rapid\Request::body('password'), $row['hash']) !== TRUE) {
-         header('Location: login?message=BAD_CREDENTIALS');
-         exit();
-    }
 
-    $_SESSION['USERNAME'] = $row['username'];
+
 
 }
 }

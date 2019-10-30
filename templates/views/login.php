@@ -1,5 +1,5 @@
 <div>
-    <form action="<?= APP_BASE_URL ?>/login" method="post" class="form-signin">
+    <form action="<?= APP_BASE_URL ?>/Login" method="post" class="form-signin">
     <h2>Please sign in</h2>
     <label>Username</label>
     <input id="Username" type="text" name='username' class="form-control" placeholder="Username" autofocus>
