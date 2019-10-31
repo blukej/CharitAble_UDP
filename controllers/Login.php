@@ -2,7 +2,6 @@
     
     session_start();
 
-
     $res->render('main', 'login', [
         'message' => $req->query('success')? 'Successful!': ''   
     ]);
