@@ -32,19 +32,19 @@ public function getHash() {
     return $this->hash;
 }
 
-public function setUserID($userID) {
+public function setUserID($user_id) {
     
-    if($userID === NULL) {
-       $this->userID = NULL;
+    if($user_id === NULL) {
+       $this->user_id = NULL;
        return;
     }
 
-   $this->userID = $userID;
+   $this->user_id = $user_id;
 }
 
-public function setUserName($userName) {
+public function setUserName($user_name) {
 
-    $this->userName = $userName;
+    $this->user_name = $user_name;
 }
 
 
@@ -69,6 +69,28 @@ public function setRole($role) {
     $this->role = $role;
 }
 
+public function register(PDO $pdo) {
+
+    if(!($pdo instanceof PDO)) {
+        header('Location: register?message=INVALID_PDO');
+    }
+
+    $password = $this->getHash();
+    $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+
+    $stt = $pdo->prepare('INSERT INTO users (user_name, email, hash) 
+    VALUES (:user_name, :email, :hash)');
+    $stt->execute([
+        'user_name' => $this->getUserName(),
+        'email' => $this->getEmail(),
+        'hash' => $hash
+    ]);
+
+    $saved = $stt->rowCount() === 1;
+
+    return $saved;
+}
+
 public function login(PDO $pdo) {
 
         if(!($pdo instanceof PDO)) {
@@ -77,7 +99,7 @@ public function login(PDO $pdo) {
 
         $stt = $pdo->prepare('SELECT user_name, hash FROM users WHERE user_name = :user_name LIMIT 1');
         $stt->execute([
-            'username' => $this->getUserName()
+            'user_name' => $this->getUserName()
         ]);
 
         $row = $stt->fetch();
@@ -87,7 +109,7 @@ public function login(PDO $pdo) {
             exit();
           }
 
-        $_SESSION['USERNAME'] = $row['username'];
+        $_SESSION['USERNAME'] = $row['user_name'];
         header('Location: index.php');  
     }
 }

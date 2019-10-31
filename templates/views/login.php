@@ -11,4 +11,4 @@
     <button type="submit">Sign in</button>
     </form>
 </div> 
-<p>If you do not have an account, please register <a href="register"> here </a></p>
+<p>If you do not have an account, please register <a href="Register"> here </a></p>

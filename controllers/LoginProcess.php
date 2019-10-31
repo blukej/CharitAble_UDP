@@ -5,7 +5,7 @@ session_start();
 $db = \Rapid\Database::getPDO();
 
 $user = new Login([
-    'userName' => $req->body('user_name'),
+    'user_name' => $req->body('username'),
     'email' => $req->body('email'),
     'hash' => $req->body('password')
 ]);
