@@ -1,4 +1,20 @@
-<div>
+<?php 
+    $messages = require_once('./messages.php');
+    $message = NULL;
+
+    $query = \Rapid\Request::query('message');
+
+    if (isset($query) && isset($messages[$query])) {
+        $message = $messages[$query];
+    }
+    else if (isset($query)) {
+        $message = $messages['UNKNOWN'];
+    }
+?>
+<?php if ($message) { ?>
+    <p class='<?= $message['class'] ?> text-center'><?= $message['message'] ?></p>
+<?php } ?>
+
     <form action="<?= APP_BASE_URL ?>/Login" method="post" class="form-signin">
     <h2>Please sign in</h2>
     <label>Username</label>
@@ -10,5 +26,5 @@
     </div>
     <button type="submit">Sign in</button>
     </form>
-</div> 
+ 
 <p>If you do not have an account, please register <a href="Register"> here </a></p>
