@@ -3,7 +3,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+    background: #fff;
 }
 
 p {
@@ -11,7 +11,7 @@ p {
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
-    color: #999;
+    color: #150808;
 }
 .wrapper {
     display: flex;
@@ -22,8 +22,8 @@ p {
     min-width: 250px;
     max-width: 250px;
     min-height: 100vh;
-    background: #7386D5;
-    color: #fff;
+    background: #CFF8F8;
+    color: #150808;
     transition: all 0.3s;
 }
 
@@ -33,7 +33,7 @@ p {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #CFF8F8;
 }
 
 #sidebar ul.components {
@@ -42,27 +42,27 @@ p {
 }
 
 #sidebar ul p {
-    color: #fff;
+    color: #150808;
     padding: 10px;
 }
 
 
 
 #sidebar ul li a {
-    color : #fafafa;
+    color : #150808;
     padding: 10px;
     font-size: 1.1em;
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
+    color: #CFF8F8;
+    background: #1357d7;
 }
 
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
+    color: #150808;
+    background: #CFF8F8;
 }
 
 
@@ -91,7 +91,7 @@ a[data-toggle="collapse"] {
 
 
 a, a:hover, a:focus {
-    color: #fafafa;
+    color: #fff;
     text-decoration: none;
     transition: all 0.3s;
 
@@ -99,8 +99,8 @@ a, a:hover, a:focus {
 
 
 ul ul a {
-    color: #fafafa;
+    color: #fff;
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #CFF8F8;
 }
