@@ -1,7 +1,6 @@
 <?php return function($req, $res) {
 
-$res->render('main', 'example', [
-  'someLocalKey' => 'Hello There',
-  'title'   => 'Home'
-]);
+  $res->status(501);
+  $res->send('<p>The Home controller has not yet been implement. This is just a test.</p>');
+
 } ?>

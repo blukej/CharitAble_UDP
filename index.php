@@ -1,11 +1,12 @@
 <?php
-  use Rapid\ConfigFile;
+
   // Include the Rapid library
   require_once('lib/Rapid.php');
-  DEFINE('BASE_DIR', ConfigFile::getContent()['APP_BASE_URL']);
-
-
-
+  define('APP_BASE_URL', '/charitable_udp');
+  //$APP_BASE_URL = function($req, $res) {
+  //  $config = \Rapid\ConfigFile::getContent();
+    //return $config['charitable_udp'];
+  //};
   // Create a new Router instance
   $app = new \Rapid\Router();
 
