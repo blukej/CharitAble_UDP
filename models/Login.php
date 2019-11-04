@@ -2,6 +2,7 @@
 private $user_id;
 private $user_name;
 private $email;
+private $address;
 private $hash;
 
 public function __construct($args) {
@@ -13,6 +14,7 @@ public function __construct($args) {
     $this->setUserID($args['user_id'] ?? NULL);
     $this->setUserName($args['user_name'] ?? NULL);
     $this->setEmail($args['email'] ?? NULL);
+    $this->setAddress($args['address'] ?? NULL);
     $this->setHash($args['hash'] ?? NULL);
 }
 
@@ -27,6 +29,11 @@ public function getUserName() {
 public function getEmail() {
     return $this->email;
 }
+
+public function getAddress() {
+    return $this->address;
+}
+
 
 public function getHash() {
     return $this->hash;
@@ -78,6 +85,10 @@ public function setEmail($email) {
     }
 
     $this->email = $email;
+}
+
+public function setAddress($address) {
+    $this-> address = $address;
 }
 
 public function setHash($hash) {
@@ -139,11 +150,12 @@ public function register(PDO $pdo) {
         exit();
     }
 
-    $stt = $pdo->prepare('INSERT INTO users (user_name, email, hash) 
-    VALUES (:user_name, :email, :hash)');
+    $stt = $pdo->prepare('INSERT INTO users (user_name, email, address, hash) 
+    VALUES (:user_name, :email, :address, :hash)');
     $stt->execute([
         'user_name' => $this->getUserName(),
         'email' => $this->getEmail(),
+        'address' => $this->getAddress(),
         'hash' => $hash
     ]);
 

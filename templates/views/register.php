@@ -18,10 +18,13 @@
 <form action="<?= APP_BASE_URL ?>/Register" method="post">
   
     <label>Username</label>
-    <input id="Username" type="text" name='username' placeholder="Username" autofocus>
+    <input id="Username" type="text" name='username' placeholder="Username">
     <br>
     <label>Email</label>
     <input id="Email" type="email" name='email' placeholder="Email">
+    <br>
+    <label>Address</label>
+    <input id="Address" type="text" name='address' placeholder="Address">
     <br>
     <label>Password</label>
     <input id="Password" type="password" name="password" placeholder="Password">
