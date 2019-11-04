@@ -1,4 +1,5 @@
 RewriteEngine On
+# /Applications/XAMPP/xamppfiles/htdocs/charitable_udp/assets/css/reset.css
 RewriteCond %{REQUEST_URI} !^/charitable_udp/assets/.+
 RewriteRule (.*) index.php [QSA,L]
 
