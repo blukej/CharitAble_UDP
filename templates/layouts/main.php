@@ -31,7 +31,7 @@
               Home
             </a>
           </li>
-            <li class="active">
+          <li class="active">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-donate"></i>
                     Communities
@@ -60,11 +60,8 @@
         </ul>
 
     </nav>
-
-    <!-- Page Content  -->
     <div id="content">
-
-        <nav class="navbar navbar-expand-lg navbar bg">
+    <nav class="navbar navbar-expand-lg navbar bg">
             <div class="container-fluid">
 
                 <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -73,8 +70,10 @@
             </div>
         </nav>
     </div>
-  <div class="container">
+  <div class="container-fluid">
+    <div class="row">
 
+    </div>
     
     <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
   </div>
@@ -106,7 +105,5 @@
 
   });
 </script>
-
-  <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
 </body>
 </html>

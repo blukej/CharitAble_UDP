@@ -22,7 +22,7 @@ p {
     min-width: 250px;
     max-width: 250px;
     min-height: 100vh;
-    background: #CFF8F8;
+    background: #e2ffff;
     color: #150808;
     transition: all 0.3s;
 }
@@ -33,12 +33,12 @@ p {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #CFF8F8;
+    background: #e2ffff;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #e2ffff;
 }
 
 #sidebar ul p {
@@ -54,15 +54,15 @@ p {
     font-size: 1.1em;
     display: block;
 }
-#sidebar ul li a:hover {
-    color: #CFF8F8;
-    background: #1357d7;
+#sidebar ul li a:hover, #active li a:hover{
+    color: #130d09;
+    background: #e9afaf;
 }
 
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #150808;
-    background: #CFF8F8;
+    background: #e2ffff;
 }
 
 
@@ -102,5 +102,5 @@ ul ul a {
     color: #fff;
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #CFF8F8;
+    background: #e2ffff;
 }
