@@ -2,6 +2,7 @@
 private $user_id;
 private $user_name;
 private $email;
+private $charityNum;
 private $address;
 private $hash;
 
@@ -12,6 +13,7 @@ public function __construct($args) {
     }
 
     $this->setUserID($args['user_id'] ?? NULL);
+    $this->setCharityNum($args['charityNum'] ?? NULL);
     $this->setUserName($args['user_name'] ?? NULL);
     $this->setEmail($args['email'] ?? NULL);
     $this->setAddress($args['address'] ?? NULL);
@@ -20,6 +22,10 @@ public function __construct($args) {
 
 public function getUserID() {
     return $this->user_id;
+}
+
+public function getCharityNum() {
+    return $this->charityNum;
 }
 
 public function getUserName() {
@@ -34,7 +40,6 @@ public function getAddress() {
     return $this->address;
 }
 
-
 public function getHash() {
     return $this->hash;
 }
@@ -47,6 +52,16 @@ public function setUserID($user_id) {
     }
 
    $this->user_id = $user_id;
+}
+
+public function setCharityNum($charityNum) {
+    
+    if($charityNum === NULL) {
+       $this->charityNum = NULL;
+       return;
+    }
+
+   $this->charityNum = $charityNum;
 }
 
 public function setUserName($user_name) {
@@ -69,7 +84,6 @@ public function setUserName($user_name) {
 
     $this->user_name = $user_name;
 }
-
 
 public function setEmail($email) {
 
@@ -152,6 +166,29 @@ public function register(PDO $pdo) {
 
     $stt = $pdo->prepare('INSERT INTO users (user_name, email, address, hash) 
     VALUES (:user_name, :email, :address, :hash)');
+    $stt->execute([
+        'user_name' => $this->getUserName(),
+        'email' => $this->getEmail(),
+        'address' => $this->getAddress(),
+        'hash' => $hash
+    ]);
+
+    $saved = $stt->rowCount() === 1;
+
+    return $saved;
+}
+
+public function charityRegister(PDO $pdo) {
+
+    if(!($pdo instanceof PDO)) {
+        header('Location: Register?message=INVALID_PDO');
+    }
+
+    $password = $this->getHash();
+    $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+
+    $stt = $pdo->prepare('INSERT INTO users (user_name, charityNum, email, address, hash, user_type) 
+    VALUES (:user_name, :charityNum, :email, :address, :hash, :user_type)');
     $stt->execute([
         'user_name' => $this->getUserName(),
         'email' => $this->getEmail(),
