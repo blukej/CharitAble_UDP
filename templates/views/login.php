@@ -11,20 +11,29 @@
         $message = $messages['UNKNOWN'];
     }
 ?>
-<?php if ($message) { ?>
-    <p class='<?= $message['class'] ?> text-center'><?= $message['message'] ?></p>
-<?php } ?>
 
-    <form action="<?= APP_BASE_URL ?>/Login" method="post" class="form-signin">
-    <h2>Please sign in</h2>
-    <label>Username</label>
-    <input id="Username" type="text" name='username' class="form-control" placeholder="Username" autofocus>
-    <br>
-    <label>Password</label>
-    <input id="Password" type="password" name="password" class="form-control" placeholder="Password">
-    <div class="checkbox">
-    </div>
-    <button type="submit">Sign in</button>
+<div class="login-form">
+    <form action="<?= APP_BASE_URL ?>/Login" method="post">
+    <?php if ($message) { ?>
+    <p class="test"><?= $message['message'] ?></p>
+    <?php } ?>
+        <h2 class="text-center">Sign in</h2>
+        <div class="form-group">
+        	<div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input id="Username" type="text" class="form-control" name="username" placeholder="Username">				
+            </div>
+        </div>
+		<div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input id="Password" type="password" class="form-control" name="password" placeholder="Password">				
+            </div>
+        </div>        
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
+        </div>
     </form>
+    <p class="text-center text-muted small">Don't have an account? <a href="Register">Sign up here!</a></p>
+</div>
  
-<p>If you do not have an account, please register <a href="Register"> here </a></p>

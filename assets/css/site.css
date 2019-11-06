@@ -170,3 +170,67 @@ div .CA-headerrow {
     font-size: 15px;
     font-weight: bold;
 }
+.login-form {
+    width: 385px;
+    margin: 30px auto;
+}
+.login-form form {        
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.login-form h2 {
+    margin: 0 0 15px;
+}
+.form-control, .login-btn {
+    min-height: 38px;
+    border-radius: 2px;
+}
+.input-group-addon .fa {
+    font-size: 18px;
+}
+.login-btn {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.register-form {
+    width: 385px;
+    margin: 30px auto;
+}
+.register-form form {        
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.register-form h2 {
+    margin: 0 0 15px;
+}
+.register-btn {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.registercharity-form {
+    width: 385px;
+    margin: 30px auto;
+}
+.registercharity-form form {        
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.registercharity-form h2 {
+    margin: 0 0 15px;
+}
+.registercharity-btn {
+    font-size: 15px;
+    font-weight: bold;
+}
+p.error{
+    text-align: center;
+    color: red;
+}
