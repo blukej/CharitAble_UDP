@@ -28,5 +28,5 @@
     <div class="checkbox">
     </div>
     <button type="submit">Register</button>
-
 </form>
+<p>If you already have an account, please login <a href="Login"> here </a></p>
