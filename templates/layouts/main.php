@@ -107,6 +107,6 @@
   });
 </script>
 
-  <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
+  
 </body>
 </html>
