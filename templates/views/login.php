@@ -15,9 +15,9 @@
     <p class='<?= $message['class'] ?> text-center'><?= $message['message'] ?></p>
 <?php } ?>
 
-    <div class="login-form">
+<div class="login-form">
     <form action="<?= APP_BASE_URL ?>/Login" method="post">
-        <h2 class="text-center">Sign in</h2>   
+        <h2 class="text-center">Sign in</h2>
         <div class="form-group">
         	<div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
