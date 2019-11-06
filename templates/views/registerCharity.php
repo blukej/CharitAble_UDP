@@ -15,24 +15,42 @@
     <p class='<?= $message['class'] ?> text-center'><?= $message['message'] ?></p>
 <?php } ?>
 
-<form action="<?= APP_BASE_URL ?>/RegisterCharity" method="post">
-  
-    <label>Charity Name</label>
-    <input id="Username" type="text" name='username' placeholder="Charity Name">
-    <br>
-    <label>Charity Number</label>
-    <input id="CharityNumber" type="number" name='charitynumber' placeholder="Charity Number">
-    <br>
-    <label>Email</label>
-    <input id="Email" type="email" name='email' placeholder="Email">
-    <br>
-    <label>Address</label>
-    <input id="Address" type="text" name='address' placeholder="Address">
-    <br>
-    <label>Password</label>
-    <input id="Password" type="password" name="password" placeholder="Password">
-    <div class="checkbox">
-    </div>
-    <button type="submit">Register</button>
-
-</form>
+<div class="registercharity-form">
+    <form action="<?= APP_BASE_URL ?>/RegisterCharity" method="post">
+        <h2 class="text-center">Register Charity</h2>   
+        <div class="form-group">
+        	<div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input id="Username" type="text" class="form-control" name="username" placeholder="Charity Name" required="required">				
+            </div>
+        </div>
+        <div class="form-group">
+        	<div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                <input id="CharityNumber" type="number" class="form-control" name="charitynumber" placeholder="Charity Number" required="required">				
+            </div>
+        </div>
+        <div class="form-group">
+        	<div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <input id="Email" type="email" class="form-control" name="email" placeholder="Email" required="required">				
+            </div>
+        </div>
+        <div class="form-group">
+        	<div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+                <input id="Address" type="text" class="form-control" name="address" placeholder="Address" required="required">				
+            </div>
+        </div>
+		<div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input id="Password" type="password" class="form-control" name="password" placeholder="Password" required="required">				
+            </div>
+        </div>        
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary login-btn btn-block">Register</button>
+        </div>
+    </form>
+    <p class="text-center text-muted small">Already have an account? <a href="Login">Login here!</a></p>
+</div>

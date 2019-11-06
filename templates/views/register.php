@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
         	<div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope-square"></i></span>
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                 <input id="Email" type="email" class="form-control" name="email" placeholder="Email" required="required">				
             </div>
         </div>
