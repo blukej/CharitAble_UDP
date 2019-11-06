@@ -28,3 +28,4 @@
     </form>
  
 <p>If you do not have an account, register <a href="Register"> here </a></p>
+<p>Charities register <a href="RegisterCharity"> here </a></p>

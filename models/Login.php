@@ -13,7 +13,7 @@ public function __construct($args) {
     }
 
     $this->setUserID($args['user_id'] ?? NULL);
-    $this->setCharityNum($args['charityNum'] ?? NULL);
+    $this->setCharityNum($args['charity_num'] ?? NULL);
     $this->setUserName($args['user_name'] ?? NULL);
     $this->setEmail($args['email'] ?? NULL);
     $this->setAddress($args['address'] ?? NULL);
@@ -187,10 +187,11 @@ public function charityRegister(PDO $pdo) {
     $password = $this->getHash();
     $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
-    $stt = $pdo->prepare('INSERT INTO users (user_name, charityNum, email, address, hash, user_type) 
-    VALUES (:user_name, :charityNum, :email, :address, :hash, :user_type)');
+    $stt = $pdo->prepare('INSERT INTO users (user_name, charity_num, email, address, hash) 
+    VALUES (:user_name, :charity_num, :email, :address, :hash)');
     $stt->execute([
         'user_name' => $this->getUserName(),
+        'charity_num' => $this->getCharityNum(),
         'email' => $this->getEmail(),
         'address' => $this->getAddress(),
         'hash' => $hash
