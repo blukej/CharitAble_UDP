@@ -23,10 +23,6 @@
 <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
-        <div class="sidebar-header">
-          
-        </div>
-
         <ul class="list-unstyled components">
           <li>
             <a href="#">
@@ -65,13 +61,11 @@
     </nav>
   <div class="container-fluid">
     <div class="row CA-headerrow">
-    <nav class="navbar navbar-expand-lg navbar bg">
-      <div class="container CA-headerrow">
-        <button type="button" id="sidebarCollapse" class="btn btn-info">
-          <i class="fas fa-bars"></i>
-       </button> 
-      </div>
-        </nav>
+      <nav class="navbar navbar-expand-lg navbar bg">
+          <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-bars"></i>
+          </button> 
+      </nav>
       <h1>Charitable</h1>
     </div>
     <div class="row CA-MainRow">
