@@ -21,7 +21,7 @@
   $app->POST('/Login',            'LoginProcess');
   $app->POST('/Register',         'RegisterProcess');
   $app->POST('/RegisterCharity',  'RegisterCharityProcess');
-  $app->POST('/PostProcess',      'PostProcess');
+  $app->POST('/Posts',             'PostProcess');
 
   // Process the request
   $app->dispatch();
