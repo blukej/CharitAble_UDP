@@ -164,3 +164,7 @@ ul ul a {
     font-size: 15px;
     font-weight: bold;
 }
+p.error{
+    text-align: center;
+    color: red;
+}
