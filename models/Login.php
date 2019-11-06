@@ -1,10 +1,15 @@
-<?php class Login {
+<?php 
+    session_start();
+class Login {
+    
+
 private $user_id;
 private $user_name;
 private $email;
 private $charityNum;
 private $address;
 private $hash;
+private $user_type;
 
 public function __construct($args) {
 
@@ -18,6 +23,7 @@ public function __construct($args) {
     $this->setEmail($args['email'] ?? NULL);
     $this->setAddress($args['address'] ?? NULL);
     $this->setHash($args['hash'] ?? NULL);
+    $this->setUserType($args['user_type'] ?? NULL);
 }
 
 public function getUserID() {
@@ -42,6 +48,10 @@ public function getAddress() {
 
 public function getHash() {
     return $this->hash;
+}
+
+public function getUserType() {
+    return $this->user_type;
 }
 
 public function setUserID($user_id) {
@@ -145,6 +155,16 @@ public function setRole($role) {
     $this->role = $role;
 }
 
+public function setUserType($user_type) {
+
+    if($user_type === NULL) {
+        $this->user_type = NULL;
+        return;
+    }
+
+    $this->user_type = $user_type;
+}
+
 public function register(PDO $pdo) {
 
     if(!($pdo instanceof PDO)) {
@@ -187,14 +207,15 @@ public function charityRegister(PDO $pdo) {
     $password = $this->getHash();
     $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
-    $stt = $pdo->prepare('INSERT INTO users (user_name, charity_num, email, address, hash) 
-    VALUES (:user_name, :charity_num, :email, :address, :hash)');
+    $stt = $pdo->prepare('INSERT INTO users (user_name, charity_num, email, address, hash, user_type) 
+    VALUES (:user_name, :charity_num, :email, :address, :hash, :user_type)');
     $stt->execute([
         'user_name' => $this->getUserName(),
         'charity_num' => $this->getCharityNum(),
         'email' => $this->getEmail(),
         'address' => $this->getAddress(),
-        'hash' => $hash
+        'hash' => $hash,
+        'user_type' => 'charity'
     ]);
 
     $saved = $stt->rowCount() === 1;
@@ -208,7 +229,7 @@ public function login(PDO $pdo) {
             throw new Exception('Invalid PDO object for Login register');
         }
 
-        $stt = $pdo->prepare('SELECT user_name, hash FROM users WHERE user_name = :user_name LIMIT 1');
+        $stt = $pdo->prepare('SELECT user_name, hash, user_type FROM users WHERE user_name = :user_name LIMIT 1');
         $stt->execute([
             'user_name' => $this->getUserName()
         ]);
@@ -221,7 +242,7 @@ public function login(PDO $pdo) {
         }
 
         $_SESSION['USERNAME'] = $row['user_name'];
-        header('Location: index.php');  
+        $_SESSION['USERTYPE'] = $row['user_type'];
 }
 
 public static function findOneByUsername($username, $pdo) {

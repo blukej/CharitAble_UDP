@@ -13,8 +13,9 @@
   // Define some routes. Here: requests to / will be
   // processed by the controller at controllers/Home.php
   $app->GET('/',                  'Home'); 
-  $app->GET('/example',           'Example');
+  $app->GET('/Example',           'Example');
   $app->GET('/Login',             'Login');
+  $app->GET('/Logout',            'Logout');
   $app->GET('/Register',          'Register');
   $app->GET('/RegisterCharity',   'RegisterCharity');
   $app->POST('/Login',            'LoginProcess');
