@@ -21,7 +21,7 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>CharitAble</h3>
+          
         </div>
 
         <ul class="list-unstyled components">
@@ -60,22 +60,25 @@
         </ul>
 
     </nav>
-    <div id="content">
-    <nav class="navbar navbar-expand-lg navbar bg">
-            <div class="container-fluid">
-
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-bars"></i>
-                </button> 
-            </div>
-        </nav>
-    </div>
   <div class="container-fluid">
-    <div class="row">
-
+    <div class="row CA-headerrow">
+    <nav class="navbar navbar-expand-lg navbar bg">
+      <div class="container CA-headerrow">
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+          <i class="fas fa-bars"></i>
+       </button> 
+      </div>
+        </nav>
+      <h1>Charitable</h1>
     </div>
-    
-    <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
+    <div class="row CA-MainRow">
+      <div class="col-10 CA-MainContent">
+        <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
+      </div>
+      <div class="col-2 CA-rightCol">
+        Extra Space
+      </div>
+    </div>
   </div>
 </div>
   
