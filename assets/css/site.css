@@ -146,3 +146,21 @@ ul ul a {
     font-size: 15px;
     font-weight: bold;
 }
+
+.registercharity-form {
+    width: 385px;
+    margin: 30px auto;
+}
+.registercharity-form form {        
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.registercharity-form h2 {
+    margin: 0 0 15px;
+}
+.registercharity-btn {
+    font-size: 15px;
+    font-weight: bold;
+}
