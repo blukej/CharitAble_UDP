@@ -26,19 +26,19 @@
         </div>
         <div class="form-group">
         	<div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
                 <input id="CharityNumber" type="number" class="form-control" name="charitynumber" placeholder="Charity Number" required="required">				
             </div>
         </div>
         <div class="form-group">
         	<div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                 <input id="Email" type="email" class="form-control" name="email" placeholder="Email" required="required">				
             </div>
         </div>
         <div class="form-group">
         	<div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
                 <input id="Address" type="text" class="form-control" name="address" placeholder="Address" required="required">				
             </div>
         </div>
