@@ -1,8 +1,15 @@
-<?php class Login {
+<?php 
+    session_start();
+class Login {
+    
+
 private $user_id;
 private $user_name;
 private $email;
+private $charityNum;
+private $address;
 private $hash;
+private $user_type;
 
 public function __construct($args) {
 
@@ -11,13 +18,20 @@ public function __construct($args) {
     }
 
     $this->setUserID($args['user_id'] ?? NULL);
+    $this->setCharityNum($args['charity_num'] ?? NULL);
     $this->setUserName($args['user_name'] ?? NULL);
     $this->setEmail($args['email'] ?? NULL);
+    $this->setAddress($args['address'] ?? NULL);
     $this->setHash($args['hash'] ?? NULL);
+    $this->setUserType($args['user_type'] ?? NULL);
 }
 
 public function getUserID() {
     return $this->user_id;
+}
+
+public function getCharityNum() {
+    return $this->charityNum;
 }
 
 public function getUserName() {
@@ -28,8 +42,16 @@ public function getEmail() {
     return $this->email;
 }
 
+public function getAddress() {
+    return $this->address;
+}
+
 public function getHash() {
     return $this->hash;
+}
+
+public function getUserType() {
+    return $this->user_type;
 }
 
 public function setUserID($user_id) {
@@ -40,6 +62,16 @@ public function setUserID($user_id) {
     }
 
    $this->user_id = $user_id;
+}
+
+public function setCharityNum($charityNum) {
+    
+    if($charityNum === NULL) {
+       $this->charityNum = NULL;
+       return;
+    }
+
+   $this->charityNum = $charityNum;
 }
 
 public function setUserName($user_name) {
@@ -63,7 +95,6 @@ public function setUserName($user_name) {
     $this->user_name = $user_name;
 }
 
-
 public function setEmail($email) {
 
     $rapid = new \Rapid\Request;
@@ -78,6 +109,10 @@ public function setEmail($email) {
     }
 
     $this->email = $email;
+}
+
+public function setAddress($address) {
+    $this-> address = $address;
 }
 
 public function setHash($hash) {
@@ -120,6 +155,16 @@ public function setRole($role) {
     $this->role = $role;
 }
 
+public function setUserType($user_type) {
+
+    if($user_type === NULL) {
+        $this->user_type = NULL;
+        return;
+    }
+
+    $this->user_type = $user_type;
+}
+
 public function register(PDO $pdo) {
 
     if(!($pdo instanceof PDO)) {
@@ -139,12 +184,38 @@ public function register(PDO $pdo) {
         exit();
     }
 
-    $stt = $pdo->prepare('INSERT INTO users (user_name, email, hash) 
-    VALUES (:user_name, :email, :hash)');
+    $stt = $pdo->prepare('INSERT INTO users (user_name, email, address, hash) 
+    VALUES (:user_name, :email, :address, :hash)');
     $stt->execute([
         'user_name' => $this->getUserName(),
         'email' => $this->getEmail(),
+        'address' => $this->getAddress(),
         'hash' => $hash
+    ]);
+
+    $saved = $stt->rowCount() === 1;
+
+    return $saved;
+}
+
+public function charityRegister(PDO $pdo) {
+
+    if(!($pdo instanceof PDO)) {
+        header('Location: Register?message=INVALID_PDO');
+    }
+
+    $password = $this->getHash();
+    $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+
+    $stt = $pdo->prepare('INSERT INTO users (user_name, charity_num, email, address, hash, user_type) 
+    VALUES (:user_name, :charity_num, :email, :address, :hash, :user_type)');
+    $stt->execute([
+        'user_name' => $this->getUserName(),
+        'charity_num' => $this->getCharityNum(),
+        'email' => $this->getEmail(),
+        'address' => $this->getAddress(),
+        'hash' => $hash,
+        'user_type' => 'charity'
     ]);
 
     $saved = $stt->rowCount() === 1;
@@ -158,7 +229,7 @@ public function login(PDO $pdo) {
             throw new Exception('Invalid PDO object for Login register');
         }
 
-        $stt = $pdo->prepare('SELECT user_name, hash FROM users WHERE user_name = :user_name LIMIT 1');
+        $stt = $pdo->prepare('SELECT user_name, hash, user_type FROM users WHERE user_name = :user_name LIMIT 1');
         $stt->execute([
             'user_name' => $this->getUserName()
         ]);
@@ -171,7 +242,7 @@ public function login(PDO $pdo) {
         }
 
         $_SESSION['USERNAME'] = $row['user_name'];
-        header('Location: index.php');  
+        $_SESSION['USERTYPE'] = $row['user_type'];
 }
 
 public static function findOneByUsername($username, $pdo) {
