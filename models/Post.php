@@ -4,7 +4,7 @@ class Post {
 
 private $post_id;
 private $user_name;
-private $title;
+private $subject;
 private $text;
 
 public function __construct($args) {
@@ -15,7 +15,7 @@ public function __construct($args) {
 
     $this->setPostID($args['post_id'] ?? NULL);
     $this->setUserName($args['user_name'] ?? NULL);
-    $this->setTitle($args['title'] ?? NULL);
+    $this->setSubject($args['subject'] ?? NULL);
     $this->setText($args['text'] ?? NULL);
 }
 
@@ -27,8 +27,8 @@ public function getUserName() {
     return $this->user_name;
 }
 
-public function getTitle() {
-    return $this->title;
+public function getSubject() {
+    return $this->subject;
 }
 
 public function getText() {
@@ -55,14 +55,14 @@ public function setUserName($user_name)
     $this->user_name = $user_name;
 }
 
-public function setTitle($title)
+public function setSubject($subject)
 {
-    if($title === NULL) {
-        $this->title = NULL;
+    if($subject === NULL) {
+        $this->subject = NULL;
         return;
      }
  
-    $this->title = $title;
+    $this->subject = $subject;
 }
 
 public function setText($text)
@@ -81,10 +81,10 @@ public function save(PDO $pdo) {
         throw new Exception('Invalid PDO object for Post save');
     }
 
-        $stt = $pdo->prepare('INSERT INTO posts (user_name, subject, text) VALUES (:user_name, :title, :text)');
+        $stt = $pdo->prepare('INSERT INTO posts (user_name, subject, text) VALUES (:user_name, :subject, :text)');
         $stt->execute([
             'user_name' => $this->getUserName(),
-            'title' => $this->getTitle(),
+            'subject' => $this->getSubject(),
             'text' => $this->getText()
         ]);
 

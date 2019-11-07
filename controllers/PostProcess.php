@@ -7,8 +7,8 @@
 
   $post = new Post([
     'user_name' => $req->body('username'),
-    'title' => $req->body('title'),
-    'post' => $req->body('post_content')
+    'subject' => $req->body('subject'),
+    'text' => $req->body('post')
 ]);
 
   $post->save($db);
