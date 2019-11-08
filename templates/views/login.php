@@ -15,7 +15,7 @@
 <div class="login-form">
     <form action="<?= APP_BASE_URL ?>/Login" method="post">
     <?php if ($message) { ?>
-    <p class="test"><?= $message['message'] ?></p>
+    <p class="error"><?= $message['message'] ?></p>
     <?php } ?>
         <h2 class="text-center">Sign in</h2>
         <div class="form-group">
@@ -36,4 +36,3 @@
     </form>
     <p class="text-center text-muted small">Don't have an account? <a href="Register">Sign up here!</a></p>
 </div>
- 
