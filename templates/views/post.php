@@ -12,8 +12,8 @@
 <?php foreach($locals['displayPosts'] as $display) : ?>
 <?php $count++; ?>
 
-<div class="panel-heading h2">Username:<?= $display["user_name"]; ?></div>
-<div class="panel-footer h2">Title:<?= $display["subject"]; ?></div>
-<div class="panel-footer h2">Content:<?= $display["text"]; ?></div>
+<p>Username:<?= $display["user_name"]; ?></p>
+<p>Title:<?= $display["subject"]; ?></p>
+<p>Content:<?= $display["text"]; ?></p>
 
 <?php endforeach; ?>
