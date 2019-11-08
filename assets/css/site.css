@@ -106,17 +106,13 @@ ul ul a {
 }
 
 div .CA-MainContent{
-    align-content: center;
-    margin-top: 5%;
-    border: #7e7e7e solid 2px;
-    background-color: #ebebeb;
+    align-content   : center;
+    margin-top      : 5%;
+    padding         : 2%;
+    font-size       : 20px;
 
 } 
-div .CA-rightCol{
-    align-content: center;
-    border: #7e7e7e solid 2px;
-    background-color: #ebebeb;
-}
+
 div .CA-headerrow {
     background: #e2ffff;
 }
