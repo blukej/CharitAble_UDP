@@ -1,6 +1,6 @@
 <?php return function($req, $res) {
-    
-    session_start();
+
+    require_once('./models/Post.php');
 
     $user_type = '';
     if(!empty($_SESSION['USERTYPE'])) {
@@ -12,10 +12,15 @@
         $user_name = $_SESSION['USERNAME'];
     }
 
+    $db = \Rapid\Database::getPDO();
+
+    $posts = Post::findAll($db);
+
     $res->render('main', 'post', [
         'message' => $req->query('success')? 'Successful!': '',
         'user_type' => $user_type,
-        'user_name' => $user_name   
+        'user_name' => $user_name,
+        'displayPosts' => $posts->fetchAll()   
     ]);
     
 } ?>

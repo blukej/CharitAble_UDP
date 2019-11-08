@@ -13,6 +13,6 @@
 
   $post->save($db);
 
-  $res->redirect("/Example");
+  $res->redirect("/Posts");
 
 } ?>
