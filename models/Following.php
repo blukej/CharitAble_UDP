@@ -56,6 +56,17 @@ public function setRank($rank) {
     $this->rank = $rank;
 }
 
+public function follow(PDO $pdo) {
 
+    if(!($pdo instanceof PDO)) {
+        throw new Exception('Invalid PDO object for Following');
+    }
 
+    $stt = $pdo->prepare('INSERT INTO following (user_id, follower_id) 
+    VALUES (:user_id, :follower_id)');
+    $stt->execute([
+        'user_id' => $this->getUserID(),
+        'follower_id' => $this->getFollowerID()
+    ]);
+}
 }?>

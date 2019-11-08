@@ -1,5 +1,5 @@
 <?php 
-    session_start();
+    
 class Login {
     
 
@@ -226,10 +226,10 @@ public function charityRegister(PDO $pdo) {
 public function login(PDO $pdo) {
 
         if(!($pdo instanceof PDO)) {
-            throw new Exception('Invalid PDO object for Login register');
+            throw new Exception('Invalid PDO object for Login');
         }
 
-        $stt = $pdo->prepare('SELECT user_name, hash, user_type FROM users WHERE user_name = :user_name LIMIT 1');
+        $stt = $pdo->prepare('SELECT user_id, user_name, hash, user_type FROM users WHERE user_name = :user_name LIMIT 1');
         $stt->execute([
             'user_name' => $this->getUserName()
         ]);
@@ -241,6 +241,7 @@ public function login(PDO $pdo) {
             exit();
         }
 
+        $_SESSION['USERID'] = $row['user_id'];
         $_SESSION['USERNAME'] = $row['user_name'];
         $_SESSION['USERTYPE'] = $row['user_type'];
 }
@@ -283,4 +284,17 @@ public static function findOneByEmail($email, $pdo) {
       }
 
       return $bool;
-}}?>
+}
+
+public static function findAllUsers($pdo) {
+    if (!$pdo instanceof PDO) {
+        throw new Exception('Invalid PDO object for Login findAll');
+    }
+
+    $stt = $pdo->prepare('SELECT user_id, user_name FROM users');
+    $stt->execute();
+
+    return $stt;
+}
+
+}?>
