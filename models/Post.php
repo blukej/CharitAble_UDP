@@ -92,4 +92,15 @@ public function save(PDO $pdo) {
 
         return $saved;
 }
+
+public function findAll($pdo) {
+    if (!$pdo instanceof PDO) {
+        throw new Exception('Invalid PDO object for Post findAll');
+    }
+
+    $stt = $pdo->prepare('SELECT post_id, user_name, subject, text FROM posts');
+    $stt->execute();
+
+    return $stt;
+}
 }
