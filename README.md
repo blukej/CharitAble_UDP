@@ -21,3 +21,9 @@ CharitAble is a website application to allow users to easily manage their donati
 * Donate processing power to mine cryptocurrency for charities
 * Email system
 * Statistics for charities
+
+# Reference
+
+Please note this project uses an MVC Framework created by Shane Gavin called Rapid.
+
+Source: https://gitlab.comp.dkit.ie/gavins/rapid-starter-project
