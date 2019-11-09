@@ -229,7 +229,7 @@ public function login(PDO $pdo) {
             throw new Exception('Invalid PDO object for Login');
         }
 
-        $stt = $pdo->prepare('SELECT user_id, user_name, hash, user_type FROM users WHERE user_name = :user_name LIMIT 1');
+        $stt = $pdo->prepare('SELECT user_name, hash, user_type FROM users WHERE user_name = :user_name LIMIT 1');
         $stt->execute([
             'user_name' => $this->getUserName()
         ]);
@@ -241,7 +241,6 @@ public function login(PDO $pdo) {
             exit();
         }
 
-        $_SESSION['USERID'] = $row['user_id'];
         $_SESSION['USERNAME'] = $row['user_name'];
         $_SESSION['USERTYPE'] = $row['user_type'];
 }

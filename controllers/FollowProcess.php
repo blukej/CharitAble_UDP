@@ -5,8 +5,8 @@ session_start();
 $db = \Rapid\Database::getPDO();
 
 $user = new Following([
-    'user_id' => $req->body('user_id'),
-    'follower_id' => $req->body('follower_id')
+    'user_name' => $req->body('user_name'),
+    'follow_user_name' => $req->body('follow_user_name')
 ]);
 
 $user->follow($db);

@@ -1,9 +1,10 @@
 <?php
-    session_start();
+    
 class Following {
 
-private $user_id;
-private $follower_id;
+private $follow_id;
+private $user_name;
+private $follow_user_name;
 private $rank;
 
 public function __construct($args) {
@@ -12,39 +13,53 @@ public function __construct($args) {
         throw new Exception('Post constructor requires an array');
     }
 
-    $this->setUserID($args['user_id'] ?? NULL);
-    $this->setFollowerID($args['follower_id'] ?? NULL);
+    $this->setFollowID($args['follow_id'] ?? NULL);
+    $this->setUserName($args['user_name'] ?? NULL);
+    $this->setFollowUserName($args['follow_user_name'] ?? NULL);
     $this->setRank($args['rank'] ?? NULL);
 }
 
-public function getUserID() {
-    return $this->user_id;
+public function getFollowID() {
+    return $this->follow_id;
 }
 
-public function getFollowerID() {
-    return $this->follower_id;
+public function getUserName() {
+    return $this->user_name;
+}
+
+public function getFollowUserName() {
+    return $this->follow_user_name;
 }
 
 public function getRank() {
     return $this->rank;
 }
 
-public function setUserID($user_id) {
-    if($user_id === NULL) {
-        $this->user_id = NULL;
+public function setFollowID($follow_id) {
+    if($follow_id === NULL) {
+        $this->follow_id = NULL;
         return;
      }
  
-    $this->user_id = $user_id;
+    $this->follow_id = $follow_id;
 }
 
-public function setFollowerID($follower_id) {
-    if($follower_id === NULL) {
-        $this->follower_id = NULL;
+public function setUserName($user_name) {
+    if($user_name === NULL) {
+        $this->user_name = NULL;
         return;
      }
  
-    $this->follower_id = $follower_id;
+    $this->user_name = $user_name;
+}
+
+public function setFollowUserName($follow_user_name) {
+    if($follow_user_name === NULL) {
+        $this->follow_user_name = NULL;
+        return;
+     }
+ 
+    $this->follow_user_name = $follow_user_name;
 }
 
 public function setRank($rank) {
@@ -62,11 +77,24 @@ public function follow(PDO $pdo) {
         throw new Exception('Invalid PDO object for Following');
     }
 
-    $stt = $pdo->prepare('INSERT INTO following (user_id, follower_id) 
-    VALUES (:user_id, :follower_id)');
+    $stt = $pdo->prepare('INSERT INTO following (user_name, follow_user_name) 
+    VALUES (:user_name, :follow_user_name)');
     $stt->execute([
-        'user_id' => $this->getUserID(),
-        'follower_id' => $this->getFollowerID()
+        'user_name' => $this->getUserName(),
+        'follow_user_name' => $this->getFollowUserName()
     ]);
+}
+
+public function findAllFollows($user_name,$pdo) {
+    if (!$pdo instanceof PDO) {
+        throw new Exception('Invalid PDO object for Post findAll');
+    }
+
+    $stt = $pdo->prepare('SELECT follow_user_name FROM following where user_name = :user_name');
+    $stt->execute([
+        'user_name' => $user_name
+    ]);
+
+    return $stt;
 }
 }?>
