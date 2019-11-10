@@ -13,7 +13,6 @@ shown, also prevent find all users from showing the user who is logged in-->
 <h3>Users</h3>
 <table border='1' cellspacing='0' cellpadding='5' width='500'>
     <?php foreach($locals['displayUsers'] as $display) : ?>
-            <?php $count++; ?>
 
                 <?php if($display["user_name"] == $locals['user_name'])
                 { 
@@ -36,7 +35,7 @@ shown, also prevent find all users from showing the user who is logged in-->
                         </form></td>
                         </tr>
                 <?php }?>
-        
+
     <?php endforeach; ?>
 </table>
 
@@ -52,9 +51,30 @@ shown, also prevent find all users from showing the user who is logged in-->
 <?php endforeach; ?>
 
 <h3>Follows</h3>
-<?php foreach($locals['displayFollows'] as $display) : ?>
-<?php $count++; ?>
+<?php foreach($locals['displayFollows'] as $display) : ?>  
 
 <p>Following: <?= $display["follow_user_name"]; ?></p>
 
 <?php endforeach; ?>
+
+
+<h3>Users</h3>
+<table border='1' cellspacing='0' cellpadding='5' width='500'>
+    <?php foreach($locals['displayUsers'] as $display) : ?>
+        <?php foreach($locals['displayFollows'] as $value) : ?>            
+                <?php if($display["user_name"] == $locals['user_name'])
+                { 
+                    
+                } elseif ($display["user_name"] == $value["follow_user_name"]) { ?>
+
+                    <p>unfollow</p>
+                    
+                <?php } ?>
+        <?php endforeach; ?>
+
+        <?php if(!($display["user_name"] == $value["follow_user_name"])) {?>
+        
+            <P>follow</p>
+        
+    <?php } endforeach; ?>
+</table>
