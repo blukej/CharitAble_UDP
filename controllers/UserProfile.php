@@ -12,6 +12,10 @@ if(!empty($_SESSION['USERNAME'])) {
     $user_name = $_SESSION['USERNAME'];
 }
 
+if(empty($_SESSION['USERNAME'])) {
+    $user_name = '';
+}
+
 $db = \Rapid\Database::getPDO();
 
 $profile = UserProfile::findOneByUsername($user_name, $db);
