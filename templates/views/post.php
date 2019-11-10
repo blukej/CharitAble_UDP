@@ -46,6 +46,11 @@
   		</a>
   		<div class="media-body">
     	  <h4 class="media-heading"><?= $display["subject"]; ?></h4>
+          <?php
+          if(empty($display["user_name"])){
+            $display["user_name"] = 'Anonymous User';
+          }
+          ?>
           <p class="text-right">By: <?= $display["user_name"]; ?></p>
           <p><?= $display["text"]; ?></p>
           <ul class="list-inline list-unstyled">
