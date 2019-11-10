@@ -1,14 +1,73 @@
-<?= $locals['user_name'] ?>
-<form action="<?= APP_BASE_URL ?>/Posts" method="post">       
-    <input id='Username' type='hidden' name='username' value="<?php echo $locals['user_name']?>">
+<div class="container">
+	<div class="row">
+	    
+	    <div class="col-md-8 col-md-offset-2">
+	        
+    		<h1>Create post</h1>
+    		
+    		<form action="<?= APP_BASE_URL ?>/Posts" method="post">    		    
+    		    <div class="form-group">
+                <p><?= $locals['user_name'] ?></p>
+                <input type='hidden' name='username' value="<?php echo $locals['user_name']?>">
+    		        <label for="title">Title <span class="require">*</span></label>
+    		        <input type="text" class="form-control" name="subject" id="subject"/>
+    		    </div>
+    		    
+    		    <div class="form-group">
+    		        <label for="description">Enter Post <span class="require">*</span></label>
+    		        <textarea rows="5" class="form-control" name="post" id="post"></textarea>
+    		    </div>
+    		    
+    		    <div class="form-group">
+    		        <p><span class="require">*</span> - required fields</p>
+    		    </div>
+    		    
+    		    <div class="form-group">
+    		        <button type="submit" value='Post' class="btn btn-primary">
+    		            Create
+    		        </button>
+    		        <button class="btn btn-default">
+    		            Cancel
+    		        </button>
+    		    </div> 		    
+    		</form>
+		</div>	
+	</div>
+</div>
 
-    <textarea type="text" name="subject" id ="subject" placeholder="Enter Title" rows="1"></textarea>
+<?php foreach($locals['displayPosts'] as $display) : ?>
+<?php $count++; ?>
 
-    <textarea type="text" name="post" id ="post" placeholder="Enter Post" rows="3"></textarea>
-         
-    <input type='submit' value='Post'>
-</form>
+<div class="container">
+  <div class="well">
+      <div class="media">
+      	<a class="pull-left" href="#">
+    		<img class="media-object" src="./assets/images/logo150150.png">
+  		</a>
+  		<div class="media-body">
+    	  <h4 class="media-heading"><?= $display["subject"]; ?></h4>
+          <p class="text-right">By: <?= $display["user_name"]; ?></p>
+          <p><?= $display["text"]; ?></p>
+          <ul class="list-inline list-unstyled">
+  			<li><span><i class="glyphicon glyphicon-calendar"></i> <?= $displayComments["timestamp"]; ?> </span></li>
+            <li>|</li>
+            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+			</ul>
+       </div>
+    </div>
+  </div>
+</div>
+<?php endforeach; ?>
 
+<?php foreach($locals['userComments'] as $displayComments) : ?>
+<?php $count++; ?>
+
+<p>User ID:<?= $displayComments["user_id"]; ?></p>
+<p>Username:<?= $display["user_name"]; ?></p>
+<p>Text:<?= $displayComments["text"]; ?></p>
+<p>Timestamp:<?= $displayComments["timestamp"]; ?></p>
+
+<?php endforeach; ?>
 <form action="<?= APP_BASE_URL ?>/Comments" method="post">   
 
             <select class="form-control" name='shoes' style="margin-bottom: 10px;">
@@ -28,21 +87,3 @@
     <input type='submit' value='Submit'>
 </form>
 
-<?php foreach($locals['displayPosts'] as $display) : ?>
-<?php $count++; ?>
-
-<p>Username:<?= $display["user_name"]; ?></p>
-<p>Title:<?= $display["subject"]; ?></p>
-<p>Content:<?= $display["text"]; ?></p>
-
-<?php endforeach; ?>
-
-<?php foreach($locals['userComments'] as $displayComments) : ?>
-<?php $count++; ?>
-
-<p>User ID:<?= $displayComments["user_id"]; ?></p>
-<p>Username:<?= $display["user_name"]; ?></p>
-<p>Text:<?= $displayComments["text"]; ?></p>
-<p>Timestamp:<?= $displayComments["timestamp"]; ?></p>
-
-<?php endforeach; ?>
