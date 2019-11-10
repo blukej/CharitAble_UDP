@@ -13,6 +13,10 @@
         $user_name = $_SESSION['USERNAME'];
     }
 
+    if(empty($_SESSION['USERNAME'])) {
+        $user_name = '';
+    }
+
     $db = \Rapid\Database::getPDO();
 
     $posts = Post::findAll($db);
