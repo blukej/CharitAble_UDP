@@ -21,31 +21,31 @@
         <div class="form-group">
         	<div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input id="Username" type="text" class="form-control" name="username" placeholder="Charity Name" required="required">				
+                <input id="Username" type="text" class="form-control" name="username" placeholder="Charity Name">				
             </div>
         </div>
         <div class="form-group">
         	<div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
-                <input id="CharityNumber" type="number" class="form-control" name="charitynumber" placeholder="Charity Number" required="required">				
+                <input id="CharityNumber" type="number" class="form-control" name="charitynumber" placeholder="Charity Number">				
             </div>
         </div>
         <div class="form-group">
         	<div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                <input id="Email" type="email" class="form-control" name="email" placeholder="Email" required="required">				
+                <input id="Email" type="email" class="form-control" name="email" placeholder="Email">				
             </div>
         </div>
         <div class="form-group">
         	<div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
-                <input id="Address" type="text" class="form-control" name="address" placeholder="Address" required="required">				
+                <input id="Address" type="text" class="form-control" name="address" placeholder="Address">				
             </div>
         </div>
 		<div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input id="Password" type="password" class="form-control" name="password" placeholder="Password" required="required">				
+                <input id="Password" type="password" class="form-control" name="password" placeholder="Password">				
             </div>
         </div>        
         <div class="form-group">
