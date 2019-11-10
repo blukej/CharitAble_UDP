@@ -18,10 +18,13 @@
   $app->GET('/Register',          'Register');
   $app->GET('/RegisterCharity',   'RegisterCharity');
   $app->GET('/Posts',             'Posts');
+  $app->GET('/Comments',             'Comments');
+  $app->GET('/Profile',             'UserProfile');
   $app->POST('/Login',            'LoginProcess');
   $app->POST('/Register',         'RegisterProcess');
   $app->POST('/RegisterCharity',  'RegisterCharityProcess');
-  $app->POST('/PostProcess',      'PostProcess');
+  $app->POST('/Posts',             'PostProcess');
+  $app->POST('/Comments',             'CommentsProcess');
 
   // Process the request
   $app->dispatch();

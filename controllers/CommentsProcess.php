@@ -1,14 +1,15 @@
-<?php require_once('./models/Post.php'); ?>
+<?php require_once('./models/Comments.php'); ?>
 <?php return function($req, $res) {
 
   session_start();
 
   $db = \Rapid\Database::getPDO();
 
-  $post = new Post([
+  $post = new Comments([
+    'post_id' => $req->body('displayPost'),
+    'user_id' => $req->body('userid'),
     'user_name' => $req->body('username'),
-    'subject' => $req->body('subject'),
-    'text' => $req->body('post')
+    'text' => $req->body('comment'),
 ]);
 
   $post->save($db);
