@@ -68,12 +68,20 @@
       </nav>
       <h1>Charitable</h1>
     </div>
+    <div class="row">
+      <div class="col-6">
+        <p></p>
+      </div>
+      
+    </div>
     <div class="row CA-MainRow">
+    <div class="col-1">
+
+    </div>
       <div class="col-10 CA-MainContent">
         <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
       </div>
-      <div class="col-2 CA-rightCol">
-        Extra Space
+      <div class="col-1">
       </div>
     </div>
   </div>

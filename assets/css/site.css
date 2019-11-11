@@ -19,10 +19,11 @@ p {
     align-items: stretch;
 }
 #sidebar {
+    font-size: 18px;
     min-width: 250px;
     max-width: 250px;
     min-height: 100vh;
-    background: #e2ffff;
+    background: #b7bcec;
     color: #150808;
     transition: all 0.3s;
 }
@@ -33,12 +34,12 @@ p {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #e2ffff;
+    background: #b7bcec;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #e2ffff;
+    border-bottom: 1px solid #b7bcec;
 }
 
 #sidebar ul p {
@@ -54,7 +55,7 @@ p {
     font-size: 1.1em;
     display: block;
 }
-#sidebar ul li a:hover, #active li a:hover{
+#sidebar ul li a:hover, #active li a:hover ,#sidebar ul li.active > a:hover{
     color: #130d09;
     background: #e9afaf;
 }
@@ -62,7 +63,7 @@ p {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #150808;
-    background: #e2ffff;
+    background: #b7bcec;
 }
 
 
@@ -100,25 +101,20 @@ a, a:hover, a:focus {
 
 ul ul a {
     color: #fff;
-    font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #e2ffff;
+    background: #b7bcec;
 }
 
 div .CA-MainContent{
-    align-content: center;
-    margin-top: 5%;
-    border: #7e7e7e solid 2px;
-    background-color: #ebebeb;
+    align-content   : center;
+    margin-top      : 5%;
+    padding         : 2%;
+    font-size       : 20px;
 
 } 
-div .CA-rightCol{
-    align-content: center;
-    border: #7e7e7e solid 2px;
-    background-color: #ebebeb;
-}
+
 div .CA-headerrow {
-    background: #e2ffff;
+    background: #b7bcec;
 }
 
 
