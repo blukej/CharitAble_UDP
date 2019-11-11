@@ -17,7 +17,7 @@
     $db = \Rapid\Database::getPDO();
 
     $posts = Post::findAll($db);
-    $users = Login::findAllUsers($db);
+    $users = Login::findAllUsersForOneUser($user_name,$db);
     $follows = Following::findAllFollows($user_name,$db);
     $res->render('main', 'post', [
         'message' => $req->query('success')? 'Successful!': '',

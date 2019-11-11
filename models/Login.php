@@ -287,11 +287,24 @@ public static function findOneByEmail($email, $pdo) {
 
 public static function findAllUsers($pdo) {
     if (!$pdo instanceof PDO) {
-        throw new Exception('Invalid PDO object for Login findAll');
+        throw new Exception('Invalid PDO object for Login findAllUsers');
     }
 
     $stt = $pdo->prepare('SELECT user_id, user_name FROM users');
     $stt->execute();
+
+    return $stt;
+}
+
+public static function findAllUsersForOneUser($user_name,$pdo) {
+    if (!$pdo instanceof PDO) {
+        throw new Exception('Invalid PDO object for Login findAllUsersForOneUser');
+    }
+
+    $stt = $pdo->prepare('SELECT user_name FROM users WHERE user_name != :user_name');
+    $stt->execute([
+        'user_name' => $user_name
+    ]);
 
     return $stt;
 }

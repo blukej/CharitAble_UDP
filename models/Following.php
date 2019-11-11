@@ -97,4 +97,5 @@ public function findAllFollows($user_name,$pdo) {
 
     return $stt;
 }
+
 }?>
