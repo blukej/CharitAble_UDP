@@ -1,7 +1,10 @@
-<?php class Post {
+<?php 
+    session_start();
+class Post {
 
 private $post_id;
 private $user_name;
+private $subject;
 private $text;
 
 public function __construct($args) {
@@ -12,6 +15,7 @@ public function __construct($args) {
 
     $this->setPostID($args['post_id'] ?? NULL);
     $this->setUserName($args['user_name'] ?? NULL);
+    $this->setSubject($args['subject'] ?? NULL);
     $this->setText($args['text'] ?? NULL);
 }
 
@@ -21,6 +25,10 @@ public function getPostID() {
 
 public function getUserName() {
     return $this->user_name;
+}
+
+public function getSubject() {
+    return $this->subject;
 }
 
 public function getText() {
@@ -44,7 +52,17 @@ public function setUserName($user_name)
         return;
      }
  
-    $this->user_id = $user_id;
+    $this->user_name = $user_name;
+}
+
+public function setSubject($subject)
+{
+    if($subject === NULL) {
+        $this->subject = NULL;
+        return;
+     }
+ 
+    $this->subject = $subject;
 }
 
 public function setText($text)
@@ -63,14 +81,26 @@ public function save(PDO $pdo) {
         throw new Exception('Invalid PDO object for Post save');
     }
 
-        $stt = $pdo->prepare('INSERT INTO posts (user_name, text) VALUES (:user_name, :text)');
+        $stt = $pdo->prepare('INSERT INTO posts (user_name, subject, text) VALUES (:user_name, :subject, :text)');
         $stt->execute([
             'user_name' => $this->getUserName(),
+            'subject' => $this->getSubject(),
             'text' => $this->getText()
         ]);
 
         $saved = $stt->rowCount() === 1;
 
         return $saved;
+}
+
+public function findAll($pdo) {
+    if (!$pdo instanceof PDO) {
+        throw new Exception('Invalid PDO object for Post findAll');
+    }
+
+    $stt = $pdo->prepare('SELECT post_id, user_name, subject, text FROM posts');
+    $stt->execute();
+
+    return $stt;
 }
 }
