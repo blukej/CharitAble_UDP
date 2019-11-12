@@ -23,10 +23,6 @@
 <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>CharitAble</h3>
-        </div>
-
         <ul class="list-unstyled components">
           <li>
             <a href="#">
@@ -34,7 +30,7 @@
               Home
             </a>
           </li>
-            <li class="active">
+          <li class="active">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-donate"></i>
                     Communities
@@ -63,23 +59,31 @@
         </ul>
 
     </nav>
-
-    <!-- Page Content  -->
-    <div id="content">
-
-        <nav class="navbar navbar-expand-lg navbar bg">
-            <div class="container-fluid">
-
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-bars"></i>
-                </button> 
-            </div>
-        </nav>
+  <div class="container-fluid">
+    <div class="row CA-headerrow">
+      <nav class="navbar navbar-expand-lg navbar bg">
+          <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-bars"></i>
+          </button> 
+      </nav>
+      <h1>Charitable</h1>
     </div>
-  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <p></p>
+      </div>
+      
+    </div>
+    <div class="row CA-MainRow">
+    <div class="col-1">
 
-    
-    <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
+    </div>
+      <div class="col-10 CA-MainContent">
+        <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
+      </div>
+      <div class="col-1">
+      </div>
+    </div>
   </div>
 </div>
   
@@ -109,7 +113,5 @@
 
   });
 </script>
-
-  
 </body>
 </html>
