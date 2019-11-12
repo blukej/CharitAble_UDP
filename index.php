@@ -24,6 +24,7 @@
   $app->POST('/RegisterCharity',  'RegisterCharityProcess');
   $app->POST('/Posts',            'PostProcess');
   $app->POST('/Follow',           'FollowProcess');
+  $app->POST('/Unfollow',         'UnfollowProcess');
   $app->POST('/Comments',         'CommentsProcess');
 
   // Process the request

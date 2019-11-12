@@ -8,37 +8,6 @@
     <input type='submit' value='Post'>
 </form>
 
-<!--IF statement which takes in the list of all followers and then checks to see if the current user has already followed any of the users 
-shown, also prevent find all users from showing the user who is logged in-->
-<h3>Users</h3>
-<table border='1' cellspacing='0' cellpadding='5' width='500'>
-    <?php foreach($locals['displayUsers'] as $display) : ?>
-
-                <?php if($display["user_name"] == $locals['user_name'])
-                { 
-                    
-                } elseif ($display["user_name"] == $follows['displayFollows']) { ?>
-                    <tr valign='top'>
-                    <td><?= $display["user_name"]; ?> <small>
-                        <form action="<?= APP_BASE_URL ?>/Follow" method="post">       
-                        <input id='UserID' type='hidden' name='user_name' value="<?php echo $locals['user_name']?>">
-                        <input id='FollowID' type='hidden' name='follow_user_name' value="<?= $display["user_name"]; ?>">   
-                        <input type='submit' value='Unfollow'>
-                    </form></td>
-                <?php } else {?>
-                        <tr valign='top'>
-                        <td><?= $display["user_name"]; ?> <small>
-                            <form action="<?= APP_BASE_URL ?>/Follow" method="post">       
-                            <input id='UserID' type='hidden' name='user_name' value="<?php echo $locals['user_name']?>">
-                            <input id='FollowID' type='hidden' name='follow_user_name' value="<?= $display["user_name"]; ?>">   
-                            <input type='submit' value='Follow'>
-                        </form></td>
-                        </tr>
-                <?php }?>
-
-    <?php endforeach; ?>
-</table>
-
 <h3>Posts</h3>
 <?php foreach($locals['displayPosts'] as $display) : ?>
 <?php $count++; ?>
@@ -56,36 +25,49 @@ shown, also prevent find all users from showing the user who is logged in-->
 
 <?php endforeach; ?>
 
-<?php $check = false; ?>
 <h3>Users</h3>
-<table border='1' cellspacing='0' cellpadding='5' width='500'>
-    <?php foreach($locals['displayUsers'] as $display) : ?>
-        <?php foreach($locals['displayFollows'] as $value) : ?>            
-                <?php if($display["user_name"] == $locals['user_name'])
-                { 
 
-                } elseif ($display["user_name"] == $value["follow_user_name"]) { ?> 
-                    <?php $check = true; ?>
-                <?php } else {
-                    $check = false;
-                } ?>
-        <?php endforeach; ?>
-        <?php if($check == true) { ?>
+<?php 
+    $users1 = array();
+    $users2 = array();
+    $following1 = array();
+    $following2 = array();
+
+    $users1 = $locals['displayUsers'];
+    $following1 = $locals['displayFollows'];
+
+
+    foreach ($users1 as $value) {
+       array_push($users2,$value['user_name']);
+    }
+
+    foreach ($following1 as $key) {
+        array_push($following2,$key['follow_user_name']);
+    }
+
+    foreach($users2 as $key => $value) {
+        
+        if(in_array($value,$following2)) { ?>
+
             <tr valign='top'>
-                <td><?= $display["user_name"]; ?> <small>
-                    <form action="<?= APP_BASE_URL ?>/Follow" method="post">       
+                    <td><?= $value ?> 
+                    <form action="<?= APP_BASE_URL ?>/Unfollow" method="post">       
                     <input id='UserID' type='hidden' name='user_name' value="<?php echo $locals['user_name']?>">
-                    <input id='FollowID' type='hidden' name='follow_user_name' value="<?= $display["user_name"]; ?>">   
+                    <input id='FollowID' type='hidden' name='follow_user_name' value="<?= $value; ?>">   
                     <input type='submit' value='Unfollow'>
             </form></td>
+
         <?php } else { ?>
+
             <tr valign='top'>
-                <td><?= $display["user_name"]; ?> <small>
+                    <td><?= $value; ?> 
                     <form action="<?= APP_BASE_URL ?>/Follow" method="post">       
                     <input id='UserID' type='hidden' name='user_name' value="<?php echo $locals['user_name']?>">
-                 <input id='FollowID' type='hidden' name='follow_user_name' value="<?= $display["user_name"]; ?>">   
+                    <input id='FollowID' type='hidden' name='follow_user_name' value="<?= $value; ?>">   
                     <input type='submit' value='Follow'>
-            </form></td></tr>
-        <?php } ?>
-    <?php endforeach; ?>
-</table>
+                </form></td>
+                </tr>
+
+        <?php } 
+    }
+?>

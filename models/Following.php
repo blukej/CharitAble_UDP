@@ -85,6 +85,19 @@ public function follow(PDO $pdo) {
     ]);
 }
 
+public function unfollow(PDO $pdo) {
+
+    if(!($pdo instanceof PDO)) {
+        throw new Exception('Invalid PDO object for Following');
+    }
+
+    $stt = $pdo->prepare('DELETE FROM following WHERE (user_name, follow_user_name) = (:user_name, :follow_user_name) LIMIT 1');
+    $stt->execute([
+        'user_name' => $this->getUserName(),
+        'follow_user_name' => $this->getFollowUserName()
+    ]);
+}
+
 public function findAllFollows($user_name,$pdo) {
     if (!$pdo instanceof PDO) {
         throw new Exception('Invalid PDO object for Post findAll');
