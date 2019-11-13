@@ -18,7 +18,7 @@ if(empty($_SESSION['USERNAME'])) {
 
 $db = \Rapid\Database::getPDO();
 
-$profile = User::findOneByUsername($user_name, $db);
+$profile = User::findOneByUsernameProfile($user_name, $db);
 
 $res->render('main', 'profile', [
     'message' => $req->query('success')? 'Successful!': '',

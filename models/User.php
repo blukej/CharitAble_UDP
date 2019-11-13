@@ -20,7 +20,7 @@ public function __construct($args) {
     }
 
     $this->setUserID($args['user_id'] ?? NULL);
-    $this->setCharityNum($args['charityNum'] ?? NULL);
+    $this->setCharityNum($args['charity_num'] ?? NULL);
     $this->setUserName($args['user_name'] ?? NULL);
     $this->setEmail($args['email'] ?? NULL);
     $this->setAddress($args['address'] ?? NULL);
@@ -81,10 +81,16 @@ public function setUserID($user_id) {
 }
 
 public function setCharityNum($charityNum) {
+
+    $rapid = new \Rapid\Request;
+    $path = $rapid->getLocalPath();
     
-    if($charityNum === NULL) {
-       $this->charityNum = NULL;
-       return;
+    if($charityNum == NULL) {
+       if($path == '/RegisterCharity'){
+            header('Location: RegisterCharity?message=CHARITYNUMBER_MISSING');
+            $this->charityNum = NULL;
+            exit();
+        }
     }
 
    $this->charityNum = $charityNum;
@@ -103,6 +109,11 @@ public function setUserName($user_name) {
         }
         else if($path === '/Register'){
             header('Location: Register?message=USERNAME_MISSING');
+            $this->user_name = NULL;
+            exit();
+        }
+        else if($path === '/RegisterCharity'){
+            header('Location: RegisterCharity?message=CHARITYNAME_MISSING');
             $this->user_name = NULL;
             exit();
         }
@@ -128,6 +139,22 @@ public function setEmail($email) {
 }
 
 public function setAddress($address) {
+    
+    $rapid = new \Rapid\Request;
+    $path = $rapid->getLocalPath();
+
+    if($address == NULL) {
+        if($path === '/Register'){
+            header('Location: Register?message=ADDRESS_MISSING');
+            $this->address = NULL;
+            exit(); 
+        }
+        else if($path === '/RegisterCharity'){          
+                header('Location: RegisterCharity?message=ADDRESS_MISSING');
+                $this->address = NULL;
+                exit();            
+        }
+    }
     $this-> address = $address;
 }
 
@@ -206,7 +233,7 @@ public static function findAll($pdo) {
     return $stt;
 }
 
-public static function findOneByUsername($user_name, $pdo) {
+public static function findOneByUsernameProfile($user_name, $pdo) {
 
     if (!($pdo instanceof PDO)) {
         throw new Exception('Invalid PDO object for User findOneByUsername');
@@ -224,6 +251,26 @@ public static function findOneByUsername($user_name, $pdo) {
       }
 
       return $stt;
+}
+
+public static function findOneByUsername($username, $pdo) {
+
+    if (!($pdo instanceof PDO)) {
+        throw new Exception('Invalid PDO object for Login findOneByUsername');
+    }
+
+    $stt = $pdo->prepare('SELECT user_name FROM users WHERE user_name = :user_name LIMIT 1');
+    $stt->execute([
+        'user_name' => $username
+    ]);
+
+    if ($stt->rowCount() > 0) {
+        $bool = True;
+      } else {
+         $bool = False;
+      }
+
+      return $bool;
 }
 
 public static function findOneByEmail($email, $pdo) {
