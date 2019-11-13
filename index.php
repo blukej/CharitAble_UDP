@@ -23,8 +23,10 @@
   $app->POST('/Login',            'LoginProcess');
   $app->POST('/Register',         'RegisterProcess');
   $app->POST('/RegisterCharity',  'RegisterCharityProcess');
-  $app->POST('/Posts',             'PostProcess');
-  $app->POST('/Comments',             'CommentsProcess');
+  $app->POST('/Posts',            'PostProcess');
+  $app->POST('/Follow',           'FollowProcess');
+  $app->POST('/Unfollow',         'UnfollowProcess');
+  $app->POST('/Comments',         'CommentsProcess');
 
   // Process the request
   $app->dispatch();
