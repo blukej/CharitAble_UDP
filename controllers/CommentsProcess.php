@@ -6,10 +6,9 @@
   $db = \Rapid\Database::getPDO();
 
   $post = new Comments([
-    'post_id' => $req->body('displayPost'),
-    'user_id' => $req->body('userid'),
-    'user_name' => $req->body('username'),
-    'text' => $req->body('comment'),
+    'post_id' => $req->body('post_id'),
+    'user_name' => $req->body('user_name'),
+    'text' => $req->body('text'),
 ]);
 
   $post->save($db);

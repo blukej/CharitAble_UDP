@@ -101,14 +101,12 @@ public function save(PDO $pdo) {
         throw new Exception('Invalid PDO object for Comment save');
     }
 
-        $stt = $pdo->prepare('INSERT INTO comments (post_id, user_id, user_name, text, timestamp) 
-        VALUES (:post_id, :user_id, :user_name :text, :CURRENT_TIMESTAMP)');
+        $stt = $pdo->prepare('INSERT INTO comments (post_id, user_name, text) 
+        VALUES (:post_id, :user_name, :text)');
         $stt->execute([
             'post_id' => $this->getPostID(),
-            'user_id' => $this->getUserID(),
             'user_name' => $this->getUserName(),
-            'text' => $this->getText(),
-            'timestamp' => $this->getTimestamp()
+            'text' => $this->getText()
         ]);
 
         $saved = $stt->rowCount() === 1;

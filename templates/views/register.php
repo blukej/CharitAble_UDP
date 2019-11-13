@@ -30,6 +30,12 @@
                 <input id="Email" type="email" class="form-control" name="email" placeholder="Email">				
             </div>
         </div>
+        <div class="form-group">
+        	<div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+                <input id="Address" type="text" class="form-control" name="address" placeholder="Address">				
+            </div>
+        </div>
 		<div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
