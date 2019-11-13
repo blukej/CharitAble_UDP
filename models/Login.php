@@ -253,7 +253,7 @@ public static function findOneByUsername($username, $pdo) {
 
     $stt = $pdo->prepare('SELECT user_name FROM users WHERE user_name = :user_name LIMIT 1');
     $stt->execute([
-        'user_name' => $user_name
+        'user_name' => $username
     ]);
 
     if ($stt->rowCount() > 0) {
