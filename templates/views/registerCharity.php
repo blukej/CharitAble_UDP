@@ -11,12 +11,12 @@
         $message = $messages['UNKNOWN'];
     }
 ?>
-<?php if ($message) { ?>
-    <p class='<?= $message['class'] ?> text-center'><?= $message['message'] ?></p>
-<?php } ?>
 
 <div class="registercharity-form">
     <form action="<?= APP_BASE_URL ?>/RegisterCharity" method="post">
+        <?php if ($message) { ?>
+        <p class="error"><?= $message['message'] ?></p>
+        <?php } ?>
         <h2 class="text-center">Register Charity</h2>   
         <div class="form-group">
         	<div class="input-group">
