@@ -92,8 +92,6 @@
     <input type='submit' value='Submit'>
 </form>
 
-<?php endforeach; ?>
-
 <h3>Follows</h3>
 <?php foreach($locals['displayFollows'] as $display) : ?>  
 
