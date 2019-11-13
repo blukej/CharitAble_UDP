@@ -51,9 +51,9 @@
                 </a>
             </li>
             <li>
-              <a href="<?=APP_BASE_URL?>/Login">
+              <a href="<?=APP_BASE_URL?>/Profile">
                 <i class="fas fa-user"></i>
-                Login
+                Profile
               </a>
             </li>
         </ul>
