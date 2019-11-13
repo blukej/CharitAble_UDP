@@ -1,13 +1,11 @@
 <div class="container">
 	<div class="row">
 	    
-	    <div class="col-md-8 col-md-offset-2">
-	        
-    		<h1>Create post</h1>
-    		
+	    <div class="col-md-8 col-md-offset-2">	        
+            <h2 class="text-center">Create Post</h2>  	
     		<form action="<?= APP_BASE_URL ?>/Posts" method="post">    		    
     		    <div class="form-group">
-                <p><?= $locals['user_name'] ?></p>
+                <p class="text-center text-muted small">You are posting as: <?= $locals['user_name'] ?></p>
                 <input type='hidden' name='username' value="<?php echo $locals['user_name']?>">
     		        <label for="title">Title <span class="require">*</span></label>
     		        <input type="text" class="form-control" name="subject" id="subject"/>
@@ -75,7 +73,7 @@
 <?php endforeach; ?>
 <form action="<?= APP_BASE_URL ?>/Comments" method="post">   
 
-            <select class="form-control" name='post_id' style="margin-bottom: 10px;">
+            <select class="form-control" name='shoes' style="margin-bottom: 10px;">
             <?php foreach($locals['displayPosts'] as $displayPosts) : ?>
                 <?php 
                     $displayPost = $displayPosts["post_id"];       
@@ -84,9 +82,10 @@
             <?php endforeach; ?>  
         </select>
 
-    <input id='user_name' type='hidden' name='user_name' value="<?php echo $locals['user_name']?>">
+    <input id='Username' type='hidden' name='username' value="<?php echo $locals['user_name']?>">
+    <input id='User_id' type='hidden' name='userid' value="<?php echo $locals['user_id']?>">
 
-    <textarea type="text" name="text" id ="text" placeholder="Enter Comment" rows="3"></textarea>
+    <textarea type="text" name="comment" id ="comment" placeholder="Enter Comment" rows="3"></textarea>
          
     <input type='submit' value='Submit'>
 </form>
