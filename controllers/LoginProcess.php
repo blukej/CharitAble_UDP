@@ -12,6 +12,6 @@ $user = new Login([
 
 $user->login($db);
 
-$res->redirect("/Example");
+$res->redirect("/");
 
 }?>
