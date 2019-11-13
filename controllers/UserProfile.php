@@ -13,7 +13,8 @@ if(!empty($_SESSION['USERNAME'])) {
 }
 
 if(empty($_SESSION['USERNAME'])) {
-    $user_name = '';
+    header('Location: Login');
+    exit();
 }
 
 $db = \Rapid\Database::getPDO();
