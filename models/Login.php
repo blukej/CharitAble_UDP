@@ -65,10 +65,16 @@ public function setUserID($user_id) {
 }
 
 public function setCharityNum($charityNum) {
+
+    $rapid = new \Rapid\Request;
+    $path = $rapid->getLocalPath();
     
-    if($charityNum === NULL) {
-       $this->charityNum = NULL;
-       return;
+    if($charityNum == NULL) {
+       if($path == '/RegisterCharity'){
+            header('Location: RegisterCharity?message=CHARITYNUMBER_MISSING');
+            $this->charityNum = NULL;
+            exit();
+        }
     }
 
    $this->charityNum = $charityNum;
@@ -87,6 +93,11 @@ public function setUserName($user_name) {
         }
         else if($path === '/Register'){
             header('Location: Register?message=USERNAME_MISSING');
+            $this->user_name = NULL;
+            exit();
+        }
+        else if($path === '/RegisterCharity'){
+            header('Location: RegisterCharity?message=CHARITYNAME_MISSING');
             $this->user_name = NULL;
             exit();
         }
@@ -112,6 +123,22 @@ public function setEmail($email) {
 }
 
 public function setAddress($address) {
+    
+    $rapid = new \Rapid\Request;
+    $path = $rapid->getLocalPath();
+
+    if($address == NULL) {
+        if($path === '/Register'){
+            header('Location: Register?message=ADDRESS_MISSING');
+            $this->address = NULL;
+            exit(); 
+        }
+        else if($path === '/RegisterCharity'){          
+                header('Location: RegisterCharity?message=ADDRESS_MISSING');
+                $this->address = NULL;
+                exit();            
+        }
+    }
     $this-> address = $address;
 }
 
@@ -201,11 +228,21 @@ public function register(PDO $pdo) {
 public function charityRegister(PDO $pdo) {
 
     if(!($pdo instanceof PDO)) {
-        header('Location: Register?message=INVALID_PDO');
+        header('Location: RegisterCharity?message=INVALID_PDO');
     }
 
     $password = $this->getHash();
     $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+
+    if($this->findOneByUsername($this->getUserName(), $pdo) == TRUE ){
+        header('Location: RegisterCharity?message=USERNAME_TAKEN');
+        exit();
+    }
+
+    if($this->findOneByEmail($this->getEmail(), $pdo) == TRUE ){
+        header('Location: RegisterCharity?message=EMAIL_TAKEN');
+        exit();
+    }
 
     $stt = $pdo->prepare('INSERT INTO users (user_name, charity_num, email, address, hash, user_type) 
     VALUES (:user_name, :charity_num, :email, :address, :hash, :user_type)');
