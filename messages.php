@@ -1,6 +1,9 @@
 <?php return [
 
 'USERNAME_MISSING'      => ['class' => 'error',   'message' => 'Username is required'],
+'CHARITYNAME_MISSING'   => ['class' => 'error',   'message' => 'Charity name is required'],
+'CHARITYNUMBER_MISSING' => ['class' => 'error',   'message' => 'Charity number is required'],
+'ADDRESS_MISSING'       => ['class' => 'error',   'message' => 'Address is required'],
 'PASSWORD_MISSING'      => ['class' => 'error',   'message' => 'Password is required'],
 'EMAIL_MISSING'         => ['class' => 'error',   'message' => 'Email is required'],
 'PASSWORD_MISMATCH'     => ['class' => 'error',   'message' => 'Password and password confirmation do not match'],

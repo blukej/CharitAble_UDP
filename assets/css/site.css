@@ -19,10 +19,11 @@ p {
     align-items: stretch;
 }
 #sidebar {
+    font-size: 18px;
     min-width: 250px;
     max-width: 250px;
     min-height: 100vh;
-    background: #CFF8F8;
+    background: #b7bcec;
     color: #150808;
     transition: all 0.3s;
 }
@@ -33,12 +34,12 @@ p {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #CFF8F8;
+    background: #b7bcec;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #b7bcec;
 }
 
 #sidebar ul p {
@@ -54,15 +55,15 @@ p {
     font-size: 1.1em;
     display: block;
 }
-#sidebar ul li a:hover {
-    color: #CFF8F8;
-    background: #1357d7;
+#sidebar ul li a:hover, #active li a:hover ,#sidebar ul li.active > a:hover{
+    color: #130d09;
+    background: #e9afaf;
 }
 
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #150808;
-    background: #CFF8F8;
+    background: #b7bcec;
 }
 
 
@@ -100,9 +101,70 @@ a, a:hover, a:focus {
 
 ul ul a {
     color: #fff;
-    font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #CFF8F8;
+    background: #b7bcec;
+}
+
+div .CA-MainContent{
+    align-content   : center;
+    margin-top      : 5%;
+    padding         : 2%;
+    font-size       : 20px;
+
+} 
+
+div .CA-headerrow {
+    background: #b7bcec;
+}
+
+
+
+/*
+:::::::::::::::::::::::::::::::::::
+                Forms
+:::::::::::::::::::::::::::::::::::
+*/
+.login-form {
+    width: 385px;
+    margin: 30px auto;
+}
+.login-form form {        
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.login-form h2 {
+    margin: 0 0 15px;
+}
+.form-control, .login-btn {
+    min-height: 38px;
+    border-radius: 2px;
+}
+.input-group-addon .fa {
+    font-size: 18px;
+}
+.login-btn {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.register-form {
+    width: 385px;
+    margin: 30px auto;
+}
+.register-form form {        
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.register-form h2 {
+    margin: 0 0 15px;
+}
+.register-btn {
+    font-size: 15px;
+    font-weight: bold;
 }
 .login-form {
     width: 385px;
@@ -145,4 +207,26 @@ ul ul a {
 .register-btn {
     font-size: 15px;
     font-weight: bold;
+}
+
+.registercharity-form {
+    width: 385px;
+    margin: 30px auto;
+}
+.registercharity-form form {        
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.registercharity-form h2 {
+    margin: 0 0 15px;
+}
+.registercharity-btn {
+    font-size: 15px;
+    font-weight: bold;
+}
+p.error{
+    text-align: center;
+    color: red;
 }

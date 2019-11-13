@@ -22,12 +22,16 @@ public function getCommentID() {
     return $this->comment_id;
 }
 
-public function getUserName() {
-    return $this->user_name;
+public function getPostID() {
+    return $this->comment_id;
 }
 
 public function getUserID() {
     return $this->user_id;
+}
+
+public function getUserName() {
+    return $this->user_name;
 }
 
 public function getText() {
@@ -58,7 +62,15 @@ public function setUserName($user_name) {
    $this->user_name = $user_name;
 }
 
+public function setPostID($post_id) {
+    
+    if($post_id === NULL) {
+       $this->post_id = NULL;
+       return;
+    }
 
+   $this->post_id = $post_id;
+}
 
 public function setUserID($user_id) {
     
@@ -89,13 +101,14 @@ public function save(PDO $pdo) {
         throw new Exception('Invalid PDO object for Comment save');
     }
 
-        $stt = $pdo->prepare('INSERT INTO comments (comment_id, post_id, user_id, text, timestamp) 
-        VALUES (:comment_id, :post_id, :user_id, text, CURRENT_TIMESTAMP)');
+        $stt = $pdo->prepare('INSERT INTO comments (post_id, user_id, user_name, text, timestamp) 
+        VALUES (:post_id, :user_id, :user_name :text, :CURRENT_TIMESTAMP)');
         $stt->execute([
-            'comment_id' => $this->getCommentID(),
-            'post_id' => $this->getUserName(),
+            'post_id' => $this->getPostID(),
             'user_id' => $this->getUserID(),
-            'text' => $this->getText()
+            'user_name' => $this->getUserName(),
+            'text' => $this->getText(),
+            'timestamp' => $this->getTimestamp()
         ]);
 
         $saved = $stt->rowCount() === 1;
