@@ -1,6 +1,6 @@
 <?php return function($req, $res) {
 
-require_once('./models/UserProfile.php');
+require_once('./models/User.php');
 
 $user_type = '';
 if(!empty($_SESSION['USERTYPE'])) {
@@ -18,7 +18,7 @@ if(empty($_SESSION['USERNAME'])) {
 
 $db = \Rapid\Database::getPDO();
 
-$profile = UserProfile::findOneByUsername($user_name, $db);
+$profile = User::findOneByUsername($user_name, $db);
 
 $res->render('main', 'profile', [
     'message' => $req->query('success')? 'Successful!': '',
