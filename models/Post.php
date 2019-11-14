@@ -103,4 +103,30 @@ public function findAll($pdo) {
 
     return $stt;
 }
+
+public function displayPost(){
+     echo('hello');
+     ?>
+     
+<div class="card-body">
+    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+        <a class="card-link" href="#">
+        <h5 class="card-title"><?=$this->getUserName()?></h5>
+        </a>
+        <h6 class="card-title"><?=$this->getSubject()?></h6>
+
+        <p class="card-text">
+        <?=$this->getText()?>
+        </p>
+    </div>
+    <div class="card-footer">
+        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+    </div>
+</div>
+    <?php
+    }
 }
+
+?>
