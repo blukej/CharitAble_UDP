@@ -105,25 +105,42 @@ public function findAll($pdo) {
 }
 
 public function displayPost(){
-     echo('hello');
      ?>
      
-<div class="card-body">
-    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
-        <a class="card-link" href="#">
-        <h5 class="card-title"><?=$this->getUserName()?></h5>
+<div class="row">
+  <div class="span8">
+    <div class="row">
+      <div class="span8">
+        <h4><strong><a href="#"><?=$this->getSubject()?></a></strong></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2">
+        <a href="#" class="thumbnail">
+            <img src="http://placehold.it/260x180" alt="">
         </a>
-        <h6 class="card-title"><?=$this->getSubject()?></h6>
-
-        <p class="card-text">
-        <?=$this->getText()?>
+      </div>
+      <div class="span6">      
+        <p>
+            <?=$this->getText()?>
         </p>
+      </div>
     </div>
-    <div class="card-footer">
-        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+    <div class="row">
+      <div class="span8">
+        <p></p>
+        <p>
+          <i class="icon-user"></i> by <a href="#"><?=$this->getUserName()?></a> 
+          | <i class="icon-comment"></i> <a href="#"></a>
+          | <i class="icon-share"></i> <a href="#">39 Shares</a>
+          | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
+          <a href="#"><span class="label label-info">Bootstrap</span></a> 
+          <a href="#"><span class="label label-info">UI</span></a> 
+          <a href="#"><span class="label label-info">growth</span></a>
+        </p>
+      </div>
     </div>
+  </div>
 </div>
     <?php
     }

@@ -35,15 +35,12 @@
 
 <?php foreach($locals['displayPosts'] as $display) : ?>
 <?php $count++; ?>
-
-<div class="container">
-  <?php 
-  $post = new Post($display);
-  $post->displayPost();
-  ?>
+<div class="row">
+    <?php 
+    $post = new Post($display);
+    $post->displayPost();
+    endforeach; ?>   
 </div>
-<?php endforeach; ?>
-
 <?php foreach($locals['userComments'] as $displayComments) : ?>
 <?php $count++; ?>
 
