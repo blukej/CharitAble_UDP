@@ -1,31 +1,33 @@
 <?php return function($req, $res) {
 
-require_once('./models/UserProfile.php');
+    session_start();
 
-$user_type = '';
-if(!empty($_SESSION['USERTYPE'])) {
-    $user_type = $_SESSION['USERTYPE'];
-}
+    require_once('./models/User.php');
 
-$username = '';
-if(!empty($_SESSION['USERNAME'])) {
-    $user_name = $_SESSION['USERNAME'];
-}
+    $user_type = '';
+    if(!empty($_SESSION['USERTYPE'])) {
+        $user_type = $_SESSION['USERTYPE'];
+    }
 
-if(empty($_SESSION['USERNAME'])) {
-    header('Location: Login');
-    exit();
-}
+    $username = '';
+    if(!empty($_SESSION['USERNAME'])) {
+        $user_name = $_SESSION['USERNAME'];
+    }
 
-$db = \Rapid\Database::getPDO();
+    if(empty($_SESSION['USERNAME'])) {
+        header('Location: Login');
+        exit();
+    }
 
-$profile = UserProfile::findOneByUsername($user_name, $db);
+    $db = \Rapid\Database::getPDO();
 
-$res->render('main', 'profile', [
-    'message' => $req->query('success')? 'Successful!': '',
-    'user_type' => $user_type,
-    'user_name' => $user_name,
-    'userProfile' => $profile->fetchAll()
-]);
+    $profile = User::findOneByUsernameProfile($user_name, $db);
+
+    $res->render('main', 'profile', [
+        'message' => $req->query('success')? 'Successful!': '',
+        'user_type' => $user_type,
+        'user_name' => $user_name,
+        'userProfile' => $profile->fetchAll()
+    ]);
 
 } ?>
