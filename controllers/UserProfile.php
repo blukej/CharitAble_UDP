@@ -2,7 +2,7 @@
 
     session_start();
 
-    require_once('./models/Login.php');
+    require_once('./models/User.php');
 
     $user_type = '';
     if(!empty($_SESSION['USERTYPE'])) {
@@ -21,7 +21,7 @@
 
     $db = \Rapid\Database::getPDO();
 
-    $profile = Login::findOneByUsernameProfile($user_name, $db);
+    $profile = User::findOneByUsernameProfile($user_name, $db);
 
     $res->render('main', 'profile', [
         'message' => $req->query('success')? 'Successful!': '',

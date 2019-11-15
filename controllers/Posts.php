@@ -3,7 +3,7 @@
     session_start();
 
     require_once('./models/Post.php');
-    require_once('./models/Login.php');
+    require_once('./models/User.php');
     require_once('./models/Following.php');
     require_once('./models/Comments.php');
 
@@ -25,7 +25,7 @@
     $db = \Rapid\Database::getPDO();
 
     $posts = Post::findAll($db);
-    $users = Login::findAllUsersForOneUser($user_name,$db);
+    $users = User::findAllUsersForOneUser($user_name,$db);
     $follows = Following::findAllFollows($user_name,$db);
     $comments = Comments::findAll($db);
 

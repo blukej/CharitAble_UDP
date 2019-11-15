@@ -1,6 +1,6 @@
 <?php 
     session_start();
-class Login {
+class User {
     
 
 private $user_id;
@@ -17,7 +17,7 @@ private $user_avatar_url;
 public function __construct($args) {
 
     if(!is_array($args)) {
-        throw new Exception('Login constructor requires an array');
+        throw new Exception('User constructor requires an array');
     }
 
     $this->setUserID($args['user_id'] ?? NULL);
@@ -294,7 +294,7 @@ public function charityRegister(PDO $pdo) {
 public function login(PDO $pdo) {
 
         if(!($pdo instanceof PDO)) {
-            throw new Exception('Invalid PDO object for Login');
+            throw new Exception('Invalid PDO object for User');
         }
 
         $stt = $pdo->prepare('SELECT user_name, hash, user_type FROM users WHERE user_name = :user_name LIMIT 1');
@@ -316,7 +316,7 @@ public function login(PDO $pdo) {
 public static function findOneByUsername($username, $pdo) {
 
     if (!($pdo instanceof PDO)) {
-        throw new Exception('Invalid PDO object for Login findOneByUsername');
+        throw new Exception('Invalid PDO object for User findOneByUsername');
     }
 
     $stt = $pdo->prepare('SELECT user_name FROM users WHERE user_name = :user_name LIMIT 1');
@@ -336,7 +336,7 @@ public static function findOneByUsername($username, $pdo) {
 public static function findOneByEmail($email, $pdo) {
 
     if (!($pdo instanceof PDO)) {
-        throw new Exception('Invalid PDO object for Login findOneByUsername');
+        throw new Exception('Invalid PDO object for User findOneByUsername');
     }
 
     $stt = $pdo->prepare('SELECT email FROM users WHERE email = :email LIMIT 1');
@@ -355,7 +355,7 @@ public static function findOneByEmail($email, $pdo) {
 
 public static function findAllUsers($pdo) {
     if (!$pdo instanceof PDO) {
-        throw new Exception('Invalid PDO object for Login findAllUsers');
+        throw new Exception('Invalid PDO object for User findAllUsers');
     }
 
     $stt = $pdo->prepare('SELECT user_id, user_name FROM users');
@@ -366,7 +366,7 @@ public static function findAllUsers($pdo) {
 
 public static function findAllUsersForOneUser($user_name,$pdo) {
     if (!$pdo instanceof PDO) {
-        throw new Exception('Invalid PDO object for Login findAllUsersForOneUser');
+        throw new Exception('Invalid PDO object for User findAllUsersForOneUser');
     }
 
     $stt = $pdo->prepare('SELECT user_name FROM users WHERE user_name != :user_name');
