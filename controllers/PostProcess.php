@@ -9,7 +9,7 @@
     'user_name' => $req->body('username'),
     'subject' => $req->body('subject'),
     'text' => $req->body('post')
-]);
+  ]);
 
   $post->save($db);
 

@@ -1,5 +1,7 @@
 <?php return function($req, $res) {
 
+    session_start();
+
     require_once('./models/Post.php');
     require_once('./models/Login.php');
     require_once('./models/Following.php');
