@@ -7,6 +7,7 @@
 
   $post = new Post([
     'user_name' => $req->body('username'),
+    'email' => $req->body('email'),
     'subject' => $req->body('subject'),
     'text' => $req->body('post')
   ]);

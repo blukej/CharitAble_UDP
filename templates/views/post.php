@@ -19,6 +19,8 @@
     		    <div class="form-group">
     		        <p><span class="require">*</span> - required fields</p>
     		    </div>
+
+                <input id='email' type='hidden' name='email' value="<?php echo $locals['email']?>">
     		    
     		    <div class="form-group">
     		        <button type="submit" value='Post' class="btn btn-primary">
