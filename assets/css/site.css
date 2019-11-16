@@ -230,3 +230,26 @@ p.error{
     text-align: center;
     color: red;
 }
+
+/*
+:::::::::::::::::::::::::::::::::
+        Posts
+:::::::::::::::::::::::::::::::::
+*/
+
+
+.CA-card p{
+    max-width: 45em;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+@media (min-width: 992px) {
+    .CA-main {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    .CA-card {
+        margin-bottom: 2.77rem;
+    }
+}

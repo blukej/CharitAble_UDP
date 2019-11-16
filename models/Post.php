@@ -106,42 +106,39 @@ public function findAll($pdo) {
 
 public function displayPost(){
      ?>
-     
-<div class="row">
-  <div class="span8">
-    <div class="row">
-      <div class="span8">
-        <h4><strong><a href="#"><?=$this->getSubject()?></a></strong></h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="span2">
-        <a href="#" class="thumbnail">
-            <img src="http://placehold.it/260x180" alt="">
-        </a>
-      </div>
-      <div class="span6">      
-        <p>
-            <?=$this->getText()?>
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="span8">
-        <p></p>
-        <p>
-          <i class="icon-user"></i> by <a href="#"><?=$this->getUserName()?></a> 
-          | <i class="icon-comment"></i> <a href="#"></a>
-          | <i class="icon-share"></i> <a href="#">39 Shares</a>
-          | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
-          <a href="#"><span class="label label-info">Bootstrap</span></a> 
-          <a href="#"><span class="label label-info">UI</span></a> 
-          <a href="#"><span class="label label-info">growth</span></a>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+          <div class="card CA-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0"><?=$this->getUserName()?></div>
+                                    <div class="h7 text-muted"><?=$this->getSubject()?></div>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <P class="col-2">
+
+                        </P>
+                        <p class="card-text col-8">
+                            <?=$this->getText()?>
+                        </p>
+                        <p class="col-2">
+                            
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i>Comment</a>
+                    </div>
+                </div>
     <?php
     }
 }
