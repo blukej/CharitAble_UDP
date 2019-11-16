@@ -6,6 +6,7 @@ private $post_id;
 private $user_name;
 private $subject;
 private $text;
+private $timestamp;
 
 public function __construct($args) {
 
@@ -33,6 +34,10 @@ public function getSubject() {
 
 public function getText() {
     return $this->text;
+}
+
+public function getTimeStamp() {
+    return $this->timestamp;
 }
 
 public function setPostID($post_id)
@@ -98,7 +103,7 @@ public function findAll($pdo) {
         throw new Exception('Invalid PDO object for Post findAll');
     }
 
-    $stt = $pdo->prepare('SELECT post_id, user_name, subject, text FROM posts');
+    $stt = $pdo->prepare('SELECT post_id, user_name, subject, text, post_date FROM posts');
     $stt->execute();
 
     return $stt;

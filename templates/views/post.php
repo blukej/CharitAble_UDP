@@ -52,7 +52,7 @@
           <p class="text-right">By: <?= $display["user_name"]; ?></p>
           <p><?= $display["text"]; ?></p>
           <ul class="list-inline list-unstyled">
-  			<li><span><i class="glyphicon glyphicon-calendar"></i> <?= $displayComments["timestamp"]; ?> </span></li>
+  			<li><span><i class="glyphicon glyphicon-calendar"></i> <?= $display["post_date"]; ?> </span></li>
             <li>|</li>
             <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="text-center">
