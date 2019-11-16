@@ -73,7 +73,7 @@
 <?php endforeach; ?>
 <form action="<?= APP_BASE_URL ?>/Comments" method="post">   
 
-            <select class="form-control" name='shoes' style="margin-bottom: 10px;">
+            <select class="form-control" name='post_id' style="margin-bottom: 10px;">
             <?php foreach($locals['displayPosts'] as $displayPosts) : ?>
                 <?php 
                     $displayPost = $displayPosts["post_id"];       
@@ -82,10 +82,9 @@
             <?php endforeach; ?>  
         </select>
 
-    <input id='Username' type='hidden' name='username' value="<?php echo $locals['user_name']?>">
-    <input id='User_id' type='hidden' name='userid' value="<?php echo $locals['user_id']?>">
+    <input id='Username' type='hidden' name='user_name' value="<?php echo $locals['user_name']?>">
 
-    <textarea type="text" name="comment" id ="comment" placeholder="Enter Comment" rows="3"></textarea>
+    <textarea type="text" name="text" id ="text" placeholder="Enter Comment" rows="3"></textarea>
          
     <input type='submit' value='Submit'>
 </form>
