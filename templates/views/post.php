@@ -59,7 +59,7 @@
             <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="text-center">
                 <input type="hidden" name="cmd" value="_donations" />
-        <input type="hidden" name="business" value="lukec0399@gmail.com" />
+        <input type="hidden" name="business" value="<?php echo $locals['email']?>" />
         <input type="hidden" name="currency_code" value="EUR" />
         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
         <img alt="" border="0" src="https://www.paypal.com/en_IE/i/scr/pixel.gif" width="1" height="1" />
