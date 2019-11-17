@@ -1,5 +1,4 @@
 <?php 
-    session_start();
 class Post {
 
 private $post_id;
