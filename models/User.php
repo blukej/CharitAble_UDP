@@ -328,9 +328,9 @@ public static function findOneByUsername($username, $pdo) {
         $bool = True;
       } else {
          $bool = False;
-      }
+    }
 
-      return $bool;
+    return $bool;
 }
 
 public static function findOneByEmail($email, $pdo) {
@@ -348,9 +348,9 @@ public static function findOneByEmail($email, $pdo) {
         $bool = True;
       } else {
          $bool = False;
-      }
+    }
 
-      return $bool;
+    return $bool;
 }
 
 public static function findAllUsers($pdo) {
@@ -400,11 +400,19 @@ public static function findOneByUsernameProfile($user_name, $pdo) {
         'user_name' => $user_name
     ]);
 
-    if ($stt->rowCount() > 0) {
-        $bool = True;
-      } else {
-         $bool = False;
-      }
+      return $stt;
+}
+
+public static function findAllCharities($pdo) {
+
+    if (!($pdo instanceof PDO)) {
+        throw new Exception('Invalid PDO object for User findOneByUsername');
+    }
+
+    $stt = $pdo->prepare('SELECT user_id, user_name, email, crypto_wallet, charity_num, address, approved, user_avatar_url FROM users WHERE user_type = :user_type LIMIT 1');
+    $stt->execute([
+        'user_type' => "charity"
+    ]);
 
       return $stt;
 }

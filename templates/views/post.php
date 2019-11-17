@@ -151,3 +151,11 @@
         <?php } 
     }
 ?>
+
+<h3> Charities </h3>
+
+<?php foreach($locals['displayCharities'] as $display) : ?>  
+
+<?= $display["user_name"]; ?></p>
+
+<?php endforeach; ?>
