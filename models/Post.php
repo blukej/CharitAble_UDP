@@ -131,4 +131,15 @@ public function findAll($pdo) {
 
     return $stt;
 }
+
+public function findAllSortByDate($pdo) {
+    if (!$pdo instanceof PDO) {
+        throw new Exception('Invalid PDO object for Post findAll');
+    }
+
+    $stt = $pdo->prepare('SELECT post_id, user_name, email, subject, text, post_date FROM posts ORDER BY post_date DESC');
+    $stt->execute();
+
+    return $stt;
+}
 }
