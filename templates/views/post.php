@@ -37,40 +37,12 @@
 
 <?php foreach($locals['displayPosts'] as $display) : ?>
 <?php $count++; ?>
-
-<div class="container">
-  <div class="well">
-      <div class="media">
-      	<a class="pull-left" href="#">
-    		<img class="media-object" src="./assets/images/logo150150.png">
-  		</a>
-  		<div class="media-body">
-    	  <h4 class="media-heading"><?= $display["subject"]; ?></h4>
-          <?php
-          if(empty($display["user_name"])){
-            $display["user_name"] = 'Anonymous User';
-          }
-          ?>
-          <p class="text-right">By: <?= $display["user_name"]; ?></p>
-          <p><?= $display["text"]; ?></p>
-          <ul class="list-inline list-unstyled">
-  			<li><span><i class="glyphicon glyphicon-calendar"></i> <?= $display["post_date"]; ?> </span></li>
-            <li>|</li>
-            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="text-center">
-                <input type="hidden" name="cmd" value="_donations" />
-        <input type="hidden" name="business" value="lukec0399@gmail.com" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-        <img alt="" border="0" src="https://www.paypal.com/en_IE/i/scr/pixel.gif" width="1" height="1" />
-        </form>
-			</ul>
-       </div>
-    </div>
-  </div>
+<div class="row">
+    <?php 
+    $post = new Post($display);
+    $post->displayPost();
+    endforeach; ?>   
 </div>
-<?php endforeach; ?>
-
 <?php foreach($locals['userComments'] as $displayComments) : ?>
 <?php $count++; ?>
 
