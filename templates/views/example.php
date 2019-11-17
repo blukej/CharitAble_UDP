@@ -7,6 +7,16 @@
         <p></p>
     </div>
 </div>
+<?php
+foreach($locals['charities'] as $charity_array)
+{
+    ?>
 <div class="row">
+    <?php
+    $charity = new Charity($charity_array);
+    $charity::displayCharity();
+
+}
+?>
     
 </div>
