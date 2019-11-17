@@ -19,6 +19,8 @@
     		    <div class="form-group">
     		        <p><span class="require">*</span> - required fields</p>
     		    </div>
+
+                <input id='email' type='hidden' name='email' value="<?php echo $locals['email']?>">
     		    
     		    <div class="form-group">
     		        <button type="submit" value='Post' class="btn btn-primary">
@@ -52,7 +54,7 @@
 <?php endforeach; ?>
 <form action="<?= APP_BASE_URL ?>/Comments" method="post">   
 
-            <select class="form-control" name='shoes' style="margin-bottom: 10px;">
+            <select class="form-control" name='post_id' style="margin-bottom: 10px;">
             <?php foreach($locals['displayPosts'] as $displayPosts) : ?>
                 <?php 
                     $displayPost = $displayPosts["post_id"];       
@@ -61,10 +63,9 @@
             <?php endforeach; ?>  
         </select>
 
-    <input id='Username' type='hidden' name='username' value="<?php echo $locals['user_name']?>">
-    <input id='User_id' type='hidden' name='userid' value="<?php echo $locals['user_id']?>">
+    <input id='Username' type='hidden' name='user_name' value="<?php echo $locals['user_name']?>">
 
-    <textarea type="text" name="comment" id ="comment" placeholder="Enter Comment" rows="3"></textarea>
+    <textarea type="text" name="text" id ="text" placeholder="Enter Comment" rows="3"></textarea>
          
     <input type='submit' value='Submit'>
 </form>
@@ -122,3 +123,47 @@
         <?php } 
     }
 ?>
+
+<h3> Charities </h3>
+
+<?php foreach($locals['displayCharities'] as $display) : ?>  
+
+<?= $display["user_name"]; ?></p>
+
+<?php endforeach; ?>
+
+<?php foreach($locals['displaySortedPosts'] as $display) : ?>
+<?php $count++; ?>
+
+<div class="container">
+  <div class="well">
+      <div class="media">
+      	<a class="pull-left" href="#">
+    		<img class="media-object" src="./assets/images/logo150150.png">
+  		</a>
+  		<div class="media-body">
+    	  <h4 class="media-heading"><?= $display["subject"]; ?></h4>
+          <?php
+          if(empty($display["user_name"])){
+            $display["user_name"] = 'Anonymous User';
+          }
+          ?>
+          <p class="text-right">By: <?= $display["user_name"]; ?></p>
+          <p><?= $display["text"]; ?></p>
+          <ul class="list-inline list-unstyled">
+  			<li><span><i class="glyphicon glyphicon-calendar"></i> <?= $display["post_date"]; ?> </span></li>
+            <li>|</li>
+            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="text-center">
+                <input type="hidden" name="cmd" value="_donations" />
+        <input type="hidden" name="business" value="lukec0399@gmail.com" />
+        <input type="hidden" name="currency_code" value="EUR" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_IE/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+			</ul>
+       </div>
+    </div>
+  </div>
+</div>
+<?php endforeach; ?>

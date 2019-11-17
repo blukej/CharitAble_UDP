@@ -1,11 +1,12 @@
 <?php 
-    session_start();
 class Post {
 
 private $post_id;
 private $user_name;
+private $email;
 private $subject;
 private $text;
+private $timestamp;
 
 public function __construct($args) {
 
@@ -15,6 +16,7 @@ public function __construct($args) {
 
     $this->setPostID($args['post_id'] ?? NULL);
     $this->setUserName($args['user_name'] ?? NULL);
+    $this->setEmail($args['email'] ?? NULL);
     $this->setSubject($args['subject'] ?? NULL);
     $this->setText($args['text'] ?? NULL);
 }
@@ -27,12 +29,36 @@ public function getUserName() {
     return $this->user_name;
 }
 
+public function getEmail() {
+    return $this->email;
+}
+
+public function setEmail($email) {
+
+    $rapid = new \Rapid\Request;
+    $path = $rapid->getLocalPath();
+
+    if($email == NULL) {
+        if($path === '/Register'){
+        header('Location: Register?message=EMAIL_MISSING');
+        $this->email = NULL;
+        exit(); 
+        }
+    }
+
+    $this->email = $email;
+}
+
 public function getSubject() {
     return $this->subject;
 }
 
 public function getText() {
     return $this->text;
+}
+
+public function getTimeStamp() {
+    return $this->timestamp;
 }
 
 public function setPostID($post_id)
@@ -81,9 +107,10 @@ public function save(PDO $pdo) {
         throw new Exception('Invalid PDO object for Post save');
     }
 
-        $stt = $pdo->prepare('INSERT INTO posts (user_name, subject, text) VALUES (:user_name, :subject, :text)');
+        $stt = $pdo->prepare('INSERT INTO posts (user_name, email, subject, text) VALUES (:user_name, :email, :subject, :text)');
         $stt->execute([
             'user_name' => $this->getUserName(),
+            'email' => $this->getEmail(),
             'subject' => $this->getSubject(),
             'text' => $this->getText()
         ]);
@@ -98,7 +125,18 @@ public function findAll($pdo) {
         throw new Exception('Invalid PDO object for Post findAll');
     }
 
-    $stt = $pdo->prepare('SELECT post_id, user_name, subject, text FROM posts');
+    $stt = $pdo->prepare('SELECT post_id, user_name, email, subject, text, post_date FROM posts');
+    $stt->execute();
+
+    return $stt;
+}
+
+public function findAllSortByDate($pdo) {
+    if (!$pdo instanceof PDO) {
+        throw new Exception('Invalid PDO object for Post findAll');
+    }
+
+    $stt = $pdo->prepare('SELECT post_id, user_name, email, subject, text, post_date FROM posts ORDER BY post_date DESC');
     $stt->execute();
 
     return $stt;

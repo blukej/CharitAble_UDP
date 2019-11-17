@@ -1,7 +1,9 @@
 <?php return function($req, $res) {
 
+    session_start();
+
     require_once('./models/Post.php');
-    require_once('./models/Login.php');
+    require_once('./models/User.php');
     require_once('./models/Following.php');
     require_once('./models/Comments.php');
 
@@ -23,7 +25,9 @@
     $db = \Rapid\Database::getPDO();
 
     $posts = Post::findAll($db);
-    $users = Login::findAllUsersForOneUser($user_name,$db);
+    $sortedPosts = Post::findAllSortByDate($db);
+    $users = User::findAllUsersForOneUser($user_name,$db);
+    $charitys = User::findAllCharities($db);
     $follows = Following::findAllFollows($user_name,$db);
     $comments = Comments::findAll($db);
 
@@ -34,7 +38,9 @@
         'displayPosts' => $posts->fetchAll(),
         'displayUsers' => $users->fetchAll(),
         'displayFollows' => $follows->fetchAll(),
-        'userComments' => $comments->fetchAll() 
+        'userComments' => $comments->fetchAll(),
+        'displayCharities' => $charitys->fetchAll(),
+        'displaySortedPosts' => $sortedPosts->fetchAll()
     ]);
     
 } ?>

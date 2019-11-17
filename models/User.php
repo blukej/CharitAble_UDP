@@ -1,6 +1,5 @@
 <?php 
-    
-class Login {
+class User {
     
 
 private $user_id;
@@ -10,11 +9,14 @@ private $charityNum;
 private $address;
 private $hash;
 private $user_type;
+private $crypto_wallet;
+private $approved;
+private $user_avatar_url;
 
 public function __construct($args) {
 
     if(!is_array($args)) {
-        throw new Exception('Login constructor requires an array');
+        throw new Exception('User constructor requires an array');
     }
 
     $this->setUserID($args['user_id'] ?? NULL);
@@ -24,6 +26,9 @@ public function __construct($args) {
     $this->setAddress($args['address'] ?? NULL);
     $this->setHash($args['hash'] ?? NULL);
     $this->setUserType($args['user_type'] ?? NULL);
+    $this->setCryptoWallet($args['crypto_wallet'] ?? NULL);
+    $this->setApproved($args['approved'] ?? NULL);
+    $this->setURL($args['user_avatar_url'] ?? NULL);
 }
 
 public function getUserID() {
@@ -53,6 +58,19 @@ public function getHash() {
 public function getUserType() {
     return $this->user_type;
 }
+
+public function getCryptoWallet() {
+    return $this->crypto_wallet;
+}
+
+public function getApproved() {
+    return $this->approved;
+}
+
+public function getURL() {
+    return $this->user_avatar_url;
+}
+
 
 public function setUserID($user_id) {
     
@@ -192,6 +210,18 @@ public function setUserType($user_type) {
     $this->user_type = $user_type;
 }
 
+public function setCryptoWallet($crypto_wallet) {
+    $this->crypto_wallet = $crypto_wallet;
+}
+
+public function setApproved($approved) {
+    $this->approved = $approved;
+}
+
+public function setURL($user_avatar_url) {
+    $this->user_avatar_url = $user_avatar_url;
+}
+
 public function register(PDO $pdo) {
 
     if(!($pdo instanceof PDO)) {
@@ -263,7 +293,7 @@ public function charityRegister(PDO $pdo) {
 public function login(PDO $pdo) {
 
         if(!($pdo instanceof PDO)) {
-            throw new Exception('Invalid PDO object for Login');
+            throw new Exception('Invalid PDO object for User');
         }
 
         $stt = $pdo->prepare('SELECT user_name, hash, user_type FROM users WHERE user_name = :user_name LIMIT 1');
@@ -285,7 +315,7 @@ public function login(PDO $pdo) {
 public static function findOneByUsername($username, $pdo) {
 
     if (!($pdo instanceof PDO)) {
-        throw new Exception('Invalid PDO object for Login findOneByUsername');
+        throw new Exception('Invalid PDO object for User findOneByUsername');
     }
 
     $stt = $pdo->prepare('SELECT user_name FROM users WHERE user_name = :user_name LIMIT 1');
@@ -297,15 +327,15 @@ public static function findOneByUsername($username, $pdo) {
         $bool = True;
       } else {
          $bool = False;
-      }
+    }
 
-      return $bool;
+    return $bool;
 }
 
 public static function findOneByEmail($email, $pdo) {
 
     if (!($pdo instanceof PDO)) {
-        throw new Exception('Invalid PDO object for Login findOneByUsername');
+        throw new Exception('Invalid PDO object for User findOneByUsername');
     }
 
     $stt = $pdo->prepare('SELECT email FROM users WHERE email = :email LIMIT 1');
@@ -317,14 +347,14 @@ public static function findOneByEmail($email, $pdo) {
         $bool = True;
       } else {
          $bool = False;
-      }
+    }
 
-      return $bool;
+    return $bool;
 }
 
 public static function findAllUsers($pdo) {
     if (!$pdo instanceof PDO) {
-        throw new Exception('Invalid PDO object for Login findAllUsers');
+        throw new Exception('Invalid PDO object for User findAllUsers');
     }
 
     $stt = $pdo->prepare('SELECT user_id, user_name FROM users');
@@ -335,7 +365,7 @@ public static function findAllUsers($pdo) {
 
 public static function findAllUsersForOneUser($user_name,$pdo) {
     if (!$pdo instanceof PDO) {
-        throw new Exception('Invalid PDO object for Login findAllUsersForOneUser');
+        throw new Exception('Invalid PDO object for User findAllUsersForOneUser');
     }
 
     $stt = $pdo->prepare('SELECT user_name FROM users WHERE user_name != :user_name');
@@ -344,6 +374,46 @@ public static function findAllUsersForOneUser($user_name,$pdo) {
     ]);
 
     return $stt;
+}
+
+public static function findAll($pdo) {
+
+    if (!$pdo instanceof PDO) {
+        throw new Exception('Invalid PDO object for User findAll');
+    }
+
+    $stt = $pdo->prepare('SELECT user_id, charity_num, user_name, email, address, crypto_wallet, user_type, user_avatar_url FROM users');
+    $stt->execute();
+
+    return $stt;
+}
+
+public static function findOneByUsernameProfile($user_name, $pdo) {
+
+    if (!($pdo instanceof PDO)) {
+        throw new Exception('Invalid PDO object for User findOneByUsername');
+    }
+
+    $stt = $pdo->prepare('SELECT user_id, user_name, email, crypto_wallet, charity_num, address, approved, user_avatar_url FROM users WHERE user_name = :user_name LIMIT 1');
+    $stt->execute([
+        'user_name' => $user_name
+    ]);
+
+      return $stt;
+}
+
+public static function findAllCharities($pdo) {
+
+    if (!($pdo instanceof PDO)) {
+        throw new Exception('Invalid PDO object for User findOneByUsername');
+    }
+
+    $stt = $pdo->prepare('SELECT user_id, user_name, email, crypto_wallet, charity_num, address, approved, user_avatar_url FROM users WHERE user_type = :user_type LIMIT 1');
+    $stt->execute([
+        'user_type' => "charity"
+    ]);
+
+      return $stt;
 }
 
 }?>
