@@ -1,18 +1,21 @@
 <?php foreach($locals['userProfile'] as $profile) : ?>
 <?php $count++; ?>
 
-<?php endforeach; ?>
+
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
   		<div class="col-sm-3">
           <ul class="list-group">
             <li class="list-group-item text-muted">Profile</li>
-            <li class="list-group-item text-right"><p class="text-center"><img src="assets/images/mary150150.jpg"></p></li>
+            <li class="list-group-item text-right"><p class="text-center"><img src="assets/images/<?= $profile["user_avatar_url"]; ?>"></p></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Username:</strong></span><?= $profile["user_name"];?></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Following:</strong></span> 4</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Donations:</strong></span> €26.50</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Subscriptions:</strong></span> €15.00</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Email: </strong></span> <?= $profile["email"]; ?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Address: </strong></span> <?= $profile["address"]; ?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>User Type: </strong></span> <?= $profile["user_type"]; ?></li>
           </ul> 
           
           <ul class="list-group">
@@ -132,6 +135,7 @@
         </div>
     </div>
 <hr>
+<?php endforeach; ?>
 <div class="container">
     <div class="row">
 	    <div class="col-md-8 col-md-offset-2">	        

@@ -395,7 +395,7 @@ public static function findOneByUsernameProfile($user_name, $pdo) {
         throw new Exception('Invalid PDO object for User findOneByUsername');
     }
 
-    $stt = $pdo->prepare('SELECT user_id, user_name, email, crypto_wallet, charity_num, address, approved, user_avatar_url FROM users WHERE user_name = :user_name LIMIT 1');
+    $stt = $pdo->prepare('SELECT user_id, user_name, email, crypto_wallet, charity_num, address, user_type, approved, user_avatar_url FROM users WHERE user_name = :user_name LIMIT 1');
     $stt->execute([
         'user_name' => $user_name
     ]);
