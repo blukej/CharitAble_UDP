@@ -4,6 +4,8 @@ class User {
 
 private $user_id;
 private $user_name;
+private $first_name;
+private $last_name;
 private $email;
 private $charityNum;
 private $address;
@@ -22,6 +24,8 @@ public function __construct($args) {
     $this->setUserID($args['user_id'] ?? NULL);
     $this->setCharityNum($args['charity_num'] ?? NULL);
     $this->setUserName($args['user_name'] ?? NULL);
+    $this->setFirstName($args['first_name'] ?? NULL);
+    $this->setLastName($args['last_name'] ?? NULL);
     $this->setEmail($args['email'] ?? NULL);
     $this->setAddress($args['address'] ?? NULL);
     $this->setHash($args['hash'] ?? NULL);
@@ -41,6 +45,14 @@ public function getCharityNum() {
 
 public function getUserName() {
     return $this->user_name;
+}
+
+public function getFirstName() {
+    return $this->first_name;
+}
+
+public function getLastName() {
+    return $this->last_name;
 }
 
 public function getEmail() {
@@ -122,6 +134,26 @@ public function setUserName($user_name) {
     }
 
     $this->user_name = $user_name;
+}
+
+public function setFirstName($first_name) {
+
+    if($first_name == NULL) {
+        $this->first_name = NULL; 
+        }
+    
+
+    $this->first_name = $first_name;
+}
+
+public function setLastName($last_name) {
+
+    if($last_name == NULL) {
+        $this->last_name = NULL;
+        }
+    
+
+    $this->last_name = $last_name;
 }
 
 public function setEmail($email) {
@@ -241,10 +273,12 @@ public function register(PDO $pdo) {
         exit();
     }
 
-    $stt = $pdo->prepare('INSERT INTO users (user_name, email, address, hash) 
-    VALUES (:user_name, :email, :address, :hash)');
+    $stt = $pdo->prepare('INSERT INTO users (user_name, first_name, last_name, email, address, hash) 
+    VALUES (:user_name, :first_name, :last_name, :email, :address, :hash)');
     $stt->execute([
         'user_name' => $this->getUserName(),
+        'first_name' => $this->getFirstName(),
+        'last_name' => $this->getLastName(),
         'email' => $this->getEmail(),
         'address' => $this->getAddress(),
         'hash' => $hash

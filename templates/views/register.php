@@ -26,6 +26,18 @@
         </div>
         <div class="form-group">
         	<div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
+                <input id="First name" type="text" class="form-control" name="first_name" placeholder="First name">				
+            </div>
+        </div>
+        <div class="form-group">
+        	<div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
+                <input id="Last name" type="text" class="form-control" name="last_name" placeholder="Last name">				
+            </div>
+        </div>
+        <div class="form-group">
+        	<div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                 <input id="Email" type="email" class="form-control" name="email" placeholder="Email">				
             </div>
