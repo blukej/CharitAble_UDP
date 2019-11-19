@@ -341,7 +341,7 @@ public function login(PDO $pdo) {
             header('Location: Login?message=BAD_CREDENTIALS');
             exit();
         }else{
-            return User::findOneByUsername($this->getUserName(), $pdo);
+            return User::findOneByUsernameProfile($this->getUserName(), $pdo);
             
         }
 
@@ -434,7 +434,7 @@ public static function findOneByUsernameProfile($user_name, $pdo) {
         'user_name' => $user_name
     ]);
 
-      return $stt;
+    return $stt->fetch();
 }
 
 public static function findAllCharities($pdo) {
@@ -483,4 +483,7 @@ public function displayCharityCard($following)
     <?php
 }
 
-}?>
+
+}
+
+?>

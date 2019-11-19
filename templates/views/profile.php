@@ -1,14 +1,12 @@
-<?php
-print_r($locals)
-?>
+
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
   		<div class="col-sm-3">
           <ul class="list-group">
             <li class="list-group-item text-muted">Profile</li>
-            <li class="list-group-item text-right"><p class="text-center"><img src="assets/images/mary150150.jpg"></p></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Username:</strong></span><?= $profile["user_name"];?></li>
+            <li class="list-group-item text-right"><p class="text-center"><img src="assets/images/<?=$locals['user']['user_avatar_url']?>.jpg"></p></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Username:</strong></span><?= $locals['user']['user_name'];?></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Following:</strong></span> 4</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Donations:</strong></span> €26.50</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Subscriptions:</strong></span> €15.00</li>
@@ -138,7 +136,7 @@ print_r($locals)
     		<form action="<?= APP_BASE_URL ?>/Posts" method="post">    		    
     		    <div class="form-group">
                 <p class="text-center text-muted small">You are posting as: <?= $locals['user']['user_name'] ?></p>
-                <input type='hidden' name='username' value="<?php echo $locals['user_name']?>">
+                <input type='hidden' name='username' value="<?= $locals['user']['user_name'] ?>">
     		        <label for="title">Title <span class="require">*</span></label>
     		        <input type="text" class="form-control" name="subject" id="subject"/>
     		    </div>

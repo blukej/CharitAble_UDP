@@ -13,7 +13,6 @@
 
     $user = $req->session('user');
     $res->render('main', 'profile', [
-        'message' => $req->query('success')? 'Successful!': '',
         'user'    => $user
     ]);
 
