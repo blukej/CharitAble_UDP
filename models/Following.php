@@ -98,17 +98,17 @@ public function unfollow(PDO $pdo) {
     ]);
 }
 
-public static function findAllFollows($username, $pdo) {
+public function findAllFollows($pdo) {
     if (!$pdo instanceof PDO) {
         throw new Exception('Invalid PDO object for Post findAll');
     }
 
     $stt = $pdo->prepare('SELECT follow_user_name FROM following where user_name = :user_name');
     $stt->execute([
-        'user_name' => $username
+        'user_name' => $this->getUserName()
     ]);
 
-    return $stt;
+    return $stt->fetchAll();
 }
 
 }?>

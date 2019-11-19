@@ -6,11 +6,15 @@
  
 
   $charities = User::findAllCharities($db);
+  $follow = new Following($_SESSION);
   
+  $followed = $follow->findAllFollows($db);
 
   $res->render('main', 'example', [
   'title'         => 'Home',
-  'charities'     => $charities->fetchAll()
+  'charities'     => $charities->fetchAll(),
+  'user_name'     => $req->session('user_name'),
+  'followed'      => $followed
   ]);
 
 } ?>

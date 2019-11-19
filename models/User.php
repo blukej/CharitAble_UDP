@@ -330,7 +330,7 @@ public function login(PDO $pdo, $req) {
             throw new Exception('Invalid PDO object for User');
         }
 
-        $stt = $pdo->prepare('SELECT user_name, hash, user_type FROM users WHERE user_name = :user_name LIMIT 1');
+        $stt = $pdo->prepare('SELECT user_name, hash, user_type, email FROM users WHERE user_name = :user_name LIMIT 1');
         $stt->execute([
             'user_name' => $this->getUserName()
         ]);
@@ -449,9 +449,19 @@ public static function findAllCharities($pdo) {
       return $stt;
 }
 
-public function displayCharity()
+
+
+public function displayCharityCard($following)
 {
     
+    if(in_array($following, $this->getUserName()))
+    {
+        echo"Unfollow";
+    }
+    else{
+        echo"Follow";
+    }
+
     ?>
     <div class="col-md-4 mt-4">
     		    <div class="card profile-card-5">
@@ -462,7 +472,6 @@ public function displayCharity()
                     <h5 class="card-title"><?=$this->getUserName()?></h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href="<?=$this->getUserName()?>" class="btn btn-primary">Profile</a>
-                    
                   </div>
                 </div>
     		</div>
