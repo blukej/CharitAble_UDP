@@ -29,11 +29,7 @@
 
     $db = \Rapid\Database::getPDO();
 
-    $posts = Post::findAll($db);
     $sortedPosts = Post::findAllSortByDate($db);
-    $users = User::findAllUsersForOneUser($user_name,$db);
-    $charitys = User::findAllCharities($db);
-    $follows = Following::findAllFollows($user_name,$db);
     $comments = Comments::findAll($db);
 
     $res->render('main', 'post', [
@@ -41,12 +37,8 @@
         'user_type' => $user_type,
         'user_name' => $user_name,
         'email' => $email,
-        'displayPosts' => $posts->fetchAll(),
-        'displayUsers' => $users->fetchAll(),
-        'displayFollows' => $follows->fetchAll(),
+        'displayPosts' => $sortedPosts->fetchAll(),
         'userComments' => $comments->fetchAll(),
-        'displayCharities' => $charitys->fetchAll(),
-        'displaySortedPosts' => $sortedPosts->fetchAll()
     ]);
     
 } ?>

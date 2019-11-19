@@ -98,7 +98,7 @@ public function unfollow(PDO $pdo) {
     ]);
 }
 
-public function findAllFollows($pdo) {
+public function findAllFollows(PDO $pdo) {
     if (!$pdo instanceof PDO) {
         throw new Exception('Invalid PDO object for Post findAll');
     }

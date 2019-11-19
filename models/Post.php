@@ -144,7 +144,7 @@ public function findAllSortByDate($pdo) {
 
 public function displayPost(){
      ?>
-          <div class="card CA-card">
+          <div class="card CA-card col">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
@@ -159,7 +159,7 @@ public function displayPost(){
                             </div>
                             <div>
                             </div>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="text-right">
+                            <form action="https://www.paypal.com/cgi-bin/webscr/<?=$this->getEmail()?>" method="post" target="_top" class="text-right">
                                 <input type="hidden" name="cmd" value="_donations" />
                                 <input type="hidden" name="business" value="<?=$this->getEmail()?>" />
                                 <input type="hidden" name="currency_code" value="EUR" />
