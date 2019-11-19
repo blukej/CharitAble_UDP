@@ -1,7 +1,6 @@
-<?php foreach($locals['userProfile'] as $profile) : ?>
-<?php $count++; ?>
-
-<?php endforeach; ?>
+<?php
+print_r($locals)
+?>
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
@@ -138,7 +137,7 @@
             <h2 class="text-center">Create Post</h2>  	
     		<form action="<?= APP_BASE_URL ?>/Posts" method="post">    		    
     		    <div class="form-group">
-                <p class="text-center text-muted small">You are posting as: <?= $locals['user_name'] ?></p>
+                <p class="text-center text-muted small">You are posting as: <?= $locals['user']['user_name'] ?></p>
                 <input type='hidden' name='username' value="<?php echo $locals['user_name']?>">
     		        <label for="title">Title <span class="require">*</span></label>
     		        <input type="text" class="form-control" name="subject" id="subject"/>

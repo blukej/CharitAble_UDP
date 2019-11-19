@@ -324,7 +324,7 @@ public function charityRegister(PDO $pdo) {
     return $saved;
 }
 
-public function login(PDO $pdo, $req) {
+public function login(PDO $pdo) {
 
         if(!($pdo instanceof PDO)) {
             throw new Exception('Invalid PDO object for User');
@@ -340,9 +340,11 @@ public function login(PDO $pdo, $req) {
         if ($row === FALSE || password_verify(\Rapid\Request::body('password'), $row['hash']) !== TRUE) {
             header('Location: Login?message=BAD_CREDENTIALS');
             exit();
+        }else{
+            return User::findOneByUsername($this->getUserName(), $pdo);
+            
         }
-        $req->sessionSet('Logged_in', True);
-        $req->sessionSet('user_name', $this->getUserName());
+
 }
 
 public static function findOneByUsername($username, $pdo) {

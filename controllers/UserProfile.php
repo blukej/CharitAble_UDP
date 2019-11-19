@@ -4,20 +4,17 @@
 
     require_once('./models/User.php');
 
-    if($req->session('logged_in'))
+    if(!$req->session('logged_in'))
     {
-        $res->header('/Login');
+        $res->redirect('/Login');
     }
 
     $db = \Rapid\Database::getPDO();
 
-    $profile = User::findOneByUsernameProfile($user_name, $db);
-
+    $user = $req->session('user');
     $res->render('main', 'profile', [
         'message' => $req->query('success')? 'Successful!': '',
-        'user_type' => $user_type,
-        'user_name' => $user_name,
-        'userProfile' => $profile->fetchAll()
+        'user'    => $user
     ]);
 
 } ?>

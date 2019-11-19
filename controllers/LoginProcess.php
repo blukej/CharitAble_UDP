@@ -10,8 +10,9 @@
         'hash' => $req->body('password')
     ]);
 
-    $user->login($db, $req);
-
+    $user = $user->login($db);
+    $req->sessionSet('logged_in', TRUE);
+    $req->sessionSet('user', $user);
     $res->redirect("/");
 
 }?>
