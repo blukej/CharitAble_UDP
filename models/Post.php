@@ -1,5 +1,4 @@
 <?php 
-    session_start();
 class Post {
 
 private $post_id;
@@ -131,4 +130,55 @@ public function findAll($pdo) {
 
     return $stt;
 }
+
+public function findAllSortByDate($pdo) {
+    if (!$pdo instanceof PDO) {
+        throw new Exception('Invalid PDO object for Post findAll');
+    }
+
+    $stt = $pdo->prepare('SELECT post_id, user_name, email, subject, text, post_date FROM posts ORDER BY post_date DESC');
+    $stt->execute();
+
+    return $stt;
 }
+
+public function displayPost(){
+     ?>
+          <div class="card CA-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0"><?=$this->getUserName()?></div>
+                                    <div class="h7 text-muted"><?=$this->getSubject()?></div>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <P class="col-2">
+
+                        </P>
+                        <p class="card-text col-8">
+                            <?=$this->getText()?>
+                        </p>
+                        <p class="col-2">
+                            
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i>Comment</a>
+                    </div>
+                </div>
+    <?php
+    }
+}
+
+?>

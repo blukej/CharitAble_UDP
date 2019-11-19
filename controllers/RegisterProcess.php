@@ -7,6 +7,8 @@
     $user = new User([
         'user_name' => $req->body('username'),
         'email' => $req->body('email'),
+        'first_name' => $req->body('first_name'),
+        'last_name' => $req->body('last_name'),
         'address' => $req->body('address'),
         'hash' => $req->body('password')
     ]);

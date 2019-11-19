@@ -1,4 +1,3 @@
-<?php session_start();?>
 <!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -30,26 +29,29 @@
               Home
             </a>
           </li>
-          <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <i class="fas fa-donate"></i>
-                    Communities
-                </a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="<?=APP_BASE_URL?>/Posts">Charities</a>
-                    </li>
-                    <li>
-                        <a href="<?=APP_BASE_URL?>/Posts">Events</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="<?=APP_BASE_URL?>/About">
-                    <i class="fas fa-briefcase"></i>
+          <li>
+            <a href="<?=APP_BASE_URL?>/About">
+                <i class="fas fa-briefcase"></i>
                     About
                 </a>
             </li>
+              <li>
+                <a href="<?=APP_BASE_URL?>/Posts">
+                <i class="fas fa-news"></i>    
+                NewsFeed
+                </a>
+              </li>
+              <li>
+                <a href="<?=APP_BASE_URL?>/Comments">
+              Comments
+              </a>
+            </li>
+              <li>
+                <a href="<?=APP_BASE_URL?>/Profile">
+                <i class = "fas fa-user"></i>
+                Profile
+              </a>
+              </li>
             <li>
               <a href="<?=APP_BASE_URL?>/Login">
                 <i class="fas fa-user"></i>

@@ -1,10 +1,11 @@
 <?php 
-    session_start();
 class User {
     
 
 private $user_id;
 private $user_name;
+private $first_name;
+private $last_name;
 private $email;
 private $charityNum;
 private $address;
@@ -23,6 +24,8 @@ public function __construct($args) {
     $this->setUserID($args['user_id'] ?? NULL);
     $this->setCharityNum($args['charity_num'] ?? NULL);
     $this->setUserName($args['user_name'] ?? NULL);
+    $this->setFirstName($args['first_name'] ?? NULL);
+    $this->setLastName($args['last_name'] ?? NULL);
     $this->setEmail($args['email'] ?? NULL);
     $this->setAddress($args['address'] ?? NULL);
     $this->setHash($args['hash'] ?? NULL);
@@ -42,6 +45,14 @@ public function getCharityNum() {
 
 public function getUserName() {
     return $this->user_name;
+}
+
+public function getFirstName() {
+    return $this->first_name;
+}
+
+public function getLastName() {
+    return $this->last_name;
 }
 
 public function getEmail() {
@@ -123,6 +134,26 @@ public function setUserName($user_name) {
     }
 
     $this->user_name = $user_name;
+}
+
+public function setFirstName($first_name) {
+
+    if($first_name == NULL) {
+        $this->first_name = NULL; 
+        }
+    
+
+    $this->first_name = $first_name;
+}
+
+public function setLastName($last_name) {
+
+    if($last_name == NULL) {
+        $this->last_name = NULL;
+        }
+    
+
+    $this->last_name = $last_name;
 }
 
 public function setEmail($email) {
@@ -242,10 +273,12 @@ public function register(PDO $pdo) {
         exit();
     }
 
-    $stt = $pdo->prepare('INSERT INTO users (user_name, email, address, hash) 
-    VALUES (:user_name, :email, :address, :hash)');
+    $stt = $pdo->prepare('INSERT INTO users (user_name, first_name, last_name, email, address, hash) 
+    VALUES (:user_name, :first_name, :last_name, :email, :address, :hash)');
     $stt->execute([
         'user_name' => $this->getUserName(),
+        'first_name' => $this->getFirstName(),
+        'last_name' => $this->getLastName(),
         'email' => $this->getEmail(),
         'address' => $this->getAddress(),
         'hash' => $hash
@@ -329,9 +362,9 @@ public static function findOneByUsername($username, $pdo) {
         $bool = True;
       } else {
          $bool = False;
-      }
+    }
 
-      return $bool;
+    return $bool;
 }
 
 public static function findOneByEmail($email, $pdo) {
@@ -349,9 +382,9 @@ public static function findOneByEmail($email, $pdo) {
         $bool = True;
       } else {
          $bool = False;
-      }
+    }
 
-      return $bool;
+    return $bool;
 }
 
 public static function findAllUsers($pdo) {
@@ -401,13 +434,43 @@ public static function findOneByUsernameProfile($user_name, $pdo) {
         'user_name' => $user_name
     ]);
 
-    if ($stt->rowCount() > 0) {
-        $bool = True;
-      } else {
-         $bool = False;
-      }
+      return $stt;
+}
+
+public static function findAllCharities($pdo) {
+
+    if (!($pdo instanceof PDO)) {
+        throw new Exception('Invalid PDO object for User findOneByUsername');
+    }
+
+    $stt = $pdo->prepare('SELECT user_id, user_name, email, crypto_wallet, charity_num, address, approved, user_avatar_url FROM users WHERE user_type = :user_type LIMIT 1');
+    $stt->execute([
+        'user_type' => "charity"
+    ]);
 
       return $stt;
+}
+
+public function displayCharity()
+{
+    ?>
+    <div class="col-md-4 mt-4">
+    		    <div class="card profile-card-5">
+    		        <div class="card-img-block">
+    		            <img class="card-img-top" src="./<?=$this->getURL()?>" alt="Card image cap">
+    		        </div>
+                    <div class="card-body pt-0">
+                    <h5 class="card-title"><?=$this->getUserName()?></h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="<?=$this->getUserName()?>" class="btn btn-primary">Profile</a>
+                  </div>
+                </div>
+                <p class="mt-3 w-100 float-left text-center"><strong><?=$this->getEmail()?></strong></p>
+    		</div>
+    		
+    	</div>
+    </div>
+    <?php
 }
 
 }?>

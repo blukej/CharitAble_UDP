@@ -7,6 +7,11 @@
         <p></p>
     </div>
 </div>
-<div class="row">
-    
-</div>
+<?php
+    foreach($locals['charities'] as $display)
+    {
+        $charity = new User($display);
+
+        $charity->displayCharity();
+    }
+?>
