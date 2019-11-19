@@ -133,7 +133,6 @@
 <?php endforeach; ?>
 
 <?php foreach($locals['displaySortedPosts'] as $display) : ?>
-<?php $count++; ?>
 
 <div class="container">
   <div class="well">

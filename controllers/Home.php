@@ -5,10 +5,11 @@
   $db = \Rapid\Database::getPDO();
 
   $charities = User::findAllCharities($db);
+
+
   $res->render('main', 'example', [
-  'someLocalKey' => 'Hello There',
   'title'        => 'Home',
-  'charities'    => $charities
+  'charities'    => $charities->fetchAll()
   ]);
 
 } ?>

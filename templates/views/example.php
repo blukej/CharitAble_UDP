@@ -8,15 +8,10 @@
     </div>
 </div>
 <?php
-foreach($locals['charities'] as $charity_array)
-{
-    ?>
-<div class="row">
-    <?php
-    $charity = new Charity($charity_array);
-    $charity::displayCharity();
+    foreach($locals['charities'] as $display)
+    {
+        $charity = new User($display);
 
-}
+        $charity->displayCharity();
+    }
 ?>
-    
-</div>
