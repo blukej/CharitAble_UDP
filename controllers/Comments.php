@@ -1,6 +1,6 @@
 <?php return function($req, $res) {
     
-    session_start();
+    $req->sessionStart();
 
     $user_type = '';
     if(!empty($_SESSION['USERTYPE'])) {

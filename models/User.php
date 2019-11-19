@@ -324,7 +324,7 @@ public function charityRegister(PDO $pdo) {
     return $saved;
 }
 
-public function login(PDO $pdo) {
+public function login(PDO $pdo, $req) {
 
         if(!($pdo instanceof PDO)) {
             throw new Exception('Invalid PDO object for User');
@@ -341,9 +341,8 @@ public function login(PDO $pdo) {
             header('Location: Login?message=BAD_CREDENTIALS');
             exit();
         }
-
-        $_SESSION['USERNAME'] = $row['user_name'];
-        $_SESSION['USERTYPE'] = $row['user_type'];
+        $req->sessionSet('Logged_in', True);
+        $req->sessionSet('user_name', $this->getUserName());
 }
 
 public static function findOneByUsername($username, $pdo) {
@@ -452,6 +451,7 @@ public static function findAllCharities($pdo) {
 
 public function displayCharity()
 {
+    
     ?>
     <div class="col-md-4 mt-4">
     		    <div class="card profile-card-5">
@@ -462,9 +462,9 @@ public function displayCharity()
                     <h5 class="card-title"><?=$this->getUserName()?></h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href="<?=$this->getUserName()?>" class="btn btn-primary">Profile</a>
+                    
                   </div>
                 </div>
-                <p class="mt-3 w-100 float-left text-center"><strong><?=$this->getEmail()?></strong></p>
     		</div>
     		
     	</div>

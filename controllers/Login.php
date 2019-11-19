@@ -1,6 +1,6 @@
 <?php return function($req, $res) {
     
-    session_start();
+    $req->sessionStart();
 
     $res->render('main', 'login', [
         'message' => $req->query('success')? 'Successful!': ''   

@@ -11,7 +11,6 @@
     foreach($locals['charities'] as $display)
     {
         $charity = new User($display);
-
         $charity->displayCharity();
     }
 ?>

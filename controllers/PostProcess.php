@@ -1,7 +1,7 @@
 <?php require_once('./models/Post.php'); ?>
 <?php return function($req, $res) {
 
-  session_start();
+  $req->sessionStart();
 
   $db = \Rapid\Database::getPDO();
 

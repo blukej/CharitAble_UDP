@@ -1,6 +1,6 @@
 <?php return function($req, $res) { require_once('./models/User.php'); 
 
-    session_start();
+    $req->sessionStart();
 
     $db = \Rapid\Database::getPDO();
 

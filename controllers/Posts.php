@@ -1,6 +1,6 @@
 <?php return function($req, $res) {
 
-    session_start();
+    $req->sessionStart();
 
     require_once('./models/Post.php');
     require_once('./models/User.php');

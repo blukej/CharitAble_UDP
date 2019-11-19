@@ -1,6 +1,6 @@
 <?php
 
-  session_start();
+  $req->sessionStart();
 
   session_destroy();
   $_SESSION = [];

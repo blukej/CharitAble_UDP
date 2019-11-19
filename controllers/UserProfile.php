@@ -1,22 +1,12 @@
 <?php return function($req, $res) {
 
-    session_start();
+    $req->sessionStart();
 
     require_once('./models/User.php');
 
-    $user_type = '';
-    if(!empty($_SESSION['USERTYPE'])) {
-        $user_type = $_SESSION['USERTYPE'];
-    }
-
-    $username = '';
-    if(!empty($_SESSION['USERNAME'])) {
-        $user_name = $_SESSION['USERNAME'];
-    }
-
-    if(empty($_SESSION['USERNAME'])) {
-        header('Location: Login');
-        exit();
+    if($req->session('logged_in'))
+    {
+        $res->header('/Login');
     }
 
     $db = \Rapid\Database::getPDO();

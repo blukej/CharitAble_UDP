@@ -1,6 +1,6 @@
 <?php return function($req, $res) {
     
-    session_start();
+    $req->sessionStart();
 
     $res->render('main', 'registerCharity', [
         'message' => $req->query('success')? 'Successful!': ''   

@@ -1,6 +1,6 @@
 <?php return function($req, $res) { require_once('./models/User.php'); 
 
-    session_start();
+    $req->sessionStart();
 
     $db = \Rapid\Database::getPDO();
 
@@ -10,7 +10,7 @@
         'hash' => $req->body('password')
     ]);
 
-    $user->login($db);
+    $user->login($db, $req);
 
     $res->redirect("/");
 
