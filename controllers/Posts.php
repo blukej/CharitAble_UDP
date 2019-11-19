@@ -8,15 +8,6 @@
     require_once('./models/Comments.php');
 
 
-    $email =  '';
-    if(!empty($_SESSION['EMAIL'])) {
-        $email = $_SESSION['EMAIL'];
-    }
-
-    $user_type = '';
-    if(!empty($_SESSION['USERTYPE'])) {
-        $user_type = $_SESSION['USERTYPE'];
-    }
     
     $user_name = '';
     if(!empty($_SESSION['USERNAME'])) {
@@ -34,9 +25,7 @@
 
     $res->render('main', 'post', [
         'message' => $req->query('success')? 'Successful!': '',
-        'user_type' => $user_type,
         'user_name' => $user_name,
-        'email' => $email,
         'displayPosts' => $sortedPosts->fetchAll(),
         'userComments' => $comments->fetchAll(),
     ]);
