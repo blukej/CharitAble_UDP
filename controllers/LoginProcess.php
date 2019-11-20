@@ -2,6 +2,8 @@
 
     $req->sessionStart();
 
+    if(!$req->session('logged_in'))
+    {
     $db = \Rapid\Database::getPDO();
 
     $user = new User([
@@ -13,6 +15,7 @@
     $user = $user->login($db);
     $req->sessionSet('logged_in', TRUE);
     $req->sessionSet('user', $user);
+    }
     $res->redirect("/");
 
 }?>

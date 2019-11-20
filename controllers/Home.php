@@ -10,11 +10,22 @@
   
   $followed = $follow->findAllFollows($db);
 
-  $res->render('main', 'example', [
-  'title'         => 'Home',
-  'charities'     => $charities->fetchAll(),
-  'user_name'     => $req->session('user_name'),
-  'followed'      => $followed
-  ]);
+  if(!$req->session('logged_in'))
+  {
+    $res->render('main', 'example', [
+    'title'         => 'Home',
+    'charities'     => $charities->fetchAll(),
+    'user_name'     => $req->session('user_name'),
+    'followed'      => $followed
+    ]);
+  }
+  else{
+    $res->render('Loggedin', 'example', [
+      'title'         => 'Home',
+      'charities'     => $charities->fetchAll(),
+      'user_name'     => $req->session('user_name'),
+      'followed'      => $followed
+      ]);
+  }
 
 } ?>

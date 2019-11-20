@@ -5,6 +5,6 @@
   session_destroy();
   $_SESSION = [];
 
-  header('Location: Login');
+  $res->redirect("/");
 
 ?>

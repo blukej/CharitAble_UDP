@@ -22,12 +22,23 @@
 
     $sortedPosts = Post::findAllSortByDate($db);
     $comments = Comments::findAll($db);
-
-    $res->render('main', 'post', [
-        'message' => $req->query('success')? 'Successful!': '',
-        'user_name' => $user_name,
-        'displayPosts' => $sortedPosts->fetchAll(),
-        'userComments' => $comments->fetchAll(),
-    ]);
+    if(!$req->session('logged_in'))
+    {
+        $res->render('main', 'post', [
+            'message' => $req->query('success')? 'Successful!': '',
+            'user_name' => $user_name,
+            'displayPosts' => $sortedPosts->fetchAll(),
+            'userComments' => $comments->fetchAll(),
+        ]);
+    }
+    else{
+        $res->render('Loggedin', 'post', [
+            'message' => $req->query('success')? 'Successful!': '',
+            'user_name' => $user_name,
+            'displayPosts' => $sortedPosts->fetchAll(),
+            'userComments' => $comments->fetchAll(),
+        ]);
+    }
+    
     
 } ?>

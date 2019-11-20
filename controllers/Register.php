@@ -1,9 +1,15 @@
 <?php return function($req, $res) {
     
     $req->sessionStart();
+    if(!$req->session('logged_in'))
+    {
+        $res->render('main', 'register', [
+            'message' => $req->query('success')? 'Successful!': ''   
+        ]);
 
-    $res->render('main', 'register', [
-        'message' => $req->query('success')? 'Successful!': ''   
-    ]);
+    }
+    else{
+        $res->redirect('/');
+    }
     
 } ?>

@@ -7,13 +7,13 @@
     if(!$req->session('logged_in'))
     {
         $res->redirect('/Login');
+    }else{
+        $db = \Rapid\Database::getPDO();
+    
+        $user = $req->session('user');
+        $res->render('Loggedin', 'profile', [
+            'user'    => $user
+        ]);
     }
-
-    $db = \Rapid\Database::getPDO();
-
-    $user = $req->session('user');
-    $res->render('main', 'profile', [
-        'user'    => $user
-    ]);
 
 } ?>
